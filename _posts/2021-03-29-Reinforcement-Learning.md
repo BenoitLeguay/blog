@@ -17,12 +17,23 @@ You will find the algorithms lists in the sub directories. I've decided to separ
 
 
 
-- **Policy Based Method**: *Algorithms that directly try to find the optimal policy* $$\pi^{*}(a|s)$$
+- **Policy Based Method**: 
+
+  *Algorithms that directly try to find the optimal policy* $$\pi^{*}(a|s)$$
+
   - REINFORCE
-- **Actor-Critic Method**: *Algorithms that optimize both the **value** and the **policy** functions to find the optimal policy*
+
+- **Actor-Critic Method**: 
+
+  *Algorithms that optimize both the **value** and the **policy** functions to find the optimal policy*
+
   - QAC
   - A2C
-- **Value Based Method**: *Algorithms that try to find the optimal policy by estimating the associated value function* $$V^*(s)$$
+
+- **Value Based Method**: 
+
+  *Algorithms that try to find the optimal policy by estimating the associated value function* $$V^*(s)$$
+
   - Tabular 
     - *SARSA*
     - *Q-Learning*
