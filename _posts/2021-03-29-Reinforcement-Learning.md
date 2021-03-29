@@ -17,22 +17,22 @@ You will find the algorithms lists in the sub directories. I've decided to separ
 
 
 
-- **Policy Based Method**: *Algorithms that directly try to find the optimal policy* $\pi^*(a|s)$
+- **Policy Based Method**: *Algorithms that directly try to find the optimal policy* $$\pi^*(a|s)$$
   - REINFORCE
 - **Actor-Critic Method**: *Algorithms that optimize both the **value** and the **policy** functions to find the optimal policy*
   - QAC
   - A2C
-- **Value Based Method**: *Algorithms that try to find the optimal policy by estimating the associated value function* $V^*(s)$ 
+- **Value Based Method**: *Algorithms that try to find the optimal policy by estimating the associated value function* $$V^*(s)$$
   - Tabular 
     - *SARSA*
     - *Q-Learning*
     - *Expected SARSA*
-    - *SARSA($\lambda$)*
+    - *SARSA($$\lambda$$)*
   - Tile Coding as function approximation
     - *SARSA*
     - *Q-Learning*
     - *Expected SARSA*
-    - *SARSA($\lambda$)*
+    - *SARSA($$\lambda$$)*
   - Neural Network as function approximation
     - *DQN*
 
@@ -41,8 +41,6 @@ You will find the algorithms lists in the sub directories. I've decided to separ
 ##### Results
 
 - *Acrobot-v1*
-
-Training process
 
 ![learning acrobot]({{ site.baseurl }}/images/acrobot_learning.png)
 
