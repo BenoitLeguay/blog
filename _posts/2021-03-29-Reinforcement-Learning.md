@@ -17,9 +17,7 @@ You will find the algorithms lists in the sub directories. I've decided to separ
 
 
 
-- **Policy Based Method**: 
-
-  *Algorithms that directly try to find the optimal policy* $$\pi^{*}(a|s)$$
+- **Policy Based Method**: *Algorithms that directly try to find the optimal policy* $$\pi^{*}(a\mid s)$$
 
   - REINFORCE
 
@@ -30,9 +28,7 @@ You will find the algorithms lists in the sub directories. I've decided to separ
   - QAC
   - A2C
 
-- **Value Based Method**: 
-
-  *Algorithms that try to find the optimal policy by estimating the associated value function* $$V^*(s)$$
+- **Value Based Method**: *Algorithms that try to find the optimal policy by estimating the associated value function* $$V^*(s)$$
 
   - Tabular 
     - *SARSA*
