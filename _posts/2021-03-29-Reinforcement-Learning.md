@@ -44,19 +44,19 @@ You will find the algorithms lists in the sub directories. I've decided to separ
 
 Training process
 
-![learning acrobot]({{ site.baseurl }}/images/acrobot_learning.png)
+![learning acrobot](https://raw.githubusercontent.com/BenoitLeguay/blog/master/images/acrobot_learning.png)
 
 **Average reward last 100 episodes:** -190.9
 
 - *Cartpole-v0*
 
-![learning cartpole]({{ site.baseurl }}/images/cartpole_learning.png)
+![learning cartpole](https://raw.githubusercontent.com/BenoitLeguay/blog/master/images/cartpole_learning.png)
 
 **Average reward last 100 episodes:** 195.6
 
 - *LunarLander-v2*
 
-![lunarlander learning.png]({{ site.baseurl }}/images/lunarlander_learning.png)
+![lunarlander learning.png](https://raw.githubusercontent.com/BenoitLeguay/blog/master/images/lunarlander_learning.png)
 
 **Average reward last 100 episodes:** 88.4
 
