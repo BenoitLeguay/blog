@@ -3,15 +3,11 @@ layout: post
 title: Reinforcement Learning
 ---
 
-**Reinforcement Learning work**
-
-Below is listed my recent work (repositories) on RL. 
+Below is listed my recent work on RL. From basic tabular SARSA to PPO, I explored Reinforcement Learning literature and implemented most of it.  
 
 ### [1) Reinforcement Learning basics](https://github.com/BenoitLeguay/Reinforcement_Learning_Basics) 
 
-As a RL enthousiast I've decided to implement many of the algorithms I found in books, courses or papers.  To me, it is the best way to truly understand them.  
-
-In this repository, you will find implementation for many of the most known RL algorithms.
+As a RL enthousiast I've decided to implement many of the algorithms I found in books, courses or papers.  To me, it is the best way to truly understand them.  In this repository, you will find implementation for many of the most known RL algorithms.
 
 You will find the algorithms lists in the sub directories. I've decided to separate them into 3 classes:	
 
