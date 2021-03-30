@@ -134,7 +134,7 @@ Good exploration method is a important point with large action space, the entrop
 
 **Entropy**
 
-To abbreviate notations, we write $$p_{\theta}(a)$$ for $$\pi_{\theta}(a\mid s_t)$$ and $$a_i$$ for $$(a_1, a_2, .., a_i)$$. We consider auto-regressive models whereby the sample components $$a_i, \> i = 1, 2, .., d$$ are sequentially generated, with $$d=2$$ in our case. In particular, after obtaining $$a_1, a_2, ..., a_{i-1}$$, we will generate $$a_i \in \mathcal{A}_i$$ from some parameterized distribution $$p_{\theta}(.\mid a_{i-1})$$ defined over the one-dimensional set $\mathcal{A}_i$. After generating the distribution $$p_{\theta}(.\mid a_{i-1}) \>\forall\> i$$ and sample the action component $$a_1, a_2, .., a_d$$ sequentially, we then define $$p_{\theta}(a) = \prod_{i=1}^{d}p_{\theta}(a_i\mid a_{i-1})$$.
+To abbreviate notations, we write $$p_{\theta}(a)$$ for $$\pi_{\theta}(a\mid s_t)$$ and $$a_i$$ for $$(a_1, a_2, .., a_i)$$. We consider auto-regressive models whereby the sample components $$a_i, \> i = 1, 2, .., d$$ are sequentially generated, with $$d=2$$ in our case. In particular, after obtaining $$a_1, a_2, ..., a_{i-1}$$, we will generate $$a_i \in \mathcal{A}_i$$ from some parameterized distribution $$p_{\theta}(.\mid a_{i-1})$$ defined over the one-dimensional set $$\mathcal{A}_i$$. After generating the distribution $$p_{\theta}(.\mid a_{i-1}) \>\forall\> i$$ and sample the action component $$a_1, a_2, .., a_d$$ sequentially, we then define $$p_{\theta}(a) = \prod_{i=1}^{d}p_{\theta}(a_i\mid a_{i-1})$$.
 
 ​	$$H_{\theta_t} = - \sum_{a_i \in \mathcal{A}} p_{\theta}(a)log(p_{\theta}(a))$$
 
