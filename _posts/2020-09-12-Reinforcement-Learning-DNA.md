@@ -1,3 +1,7 @@
+Here is the description of the algorithm I designed to perform optimization on DNA sequences. 
+
+
+
 # Algorithm description
 
 ## 1. Markovian Decision process
