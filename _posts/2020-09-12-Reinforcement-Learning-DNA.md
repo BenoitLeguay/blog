@@ -36,7 +36,7 @@ The reward function is handle by a ***Oracle***. This neural network takes a DNA
 
 3. for $$t$$$$  = 0, 1, 2, 3 ... $$T 
 
-   1. the actor selects action $a_t$, sampling from $$\hat{\pi}(. | s_t)$$.
+   1. the actor selects action $$a_t$$, sampling from $$\hat{\pi}(. \mid s_t)$$.
 
    2. perform $$a_t$$, observe $$s_{t+1}$$.
 
@@ -68,11 +68,11 @@ In this section we will talk about both **critic** and **actor** networks.
 
 ###### Autoregressive
 
-In this section, we will assume $$|a_1|=· · ·=|a_d|=L_{opt}$$ with $$d=3$$. In the section 5, we talk about dealing with different sub-action's dimension size.
+In this section, we will assume $$\mid a_1\mid =· · ·=\mid a_d \mid=L_{opt}$$ with $$d=3$$. In the section 5, we talk about dealing with different sub-action's dimension size.
 
 The actor needs to generate a probability distribution over the set of actions $$\mathcal{A}$$. In a 1-dimensional action space setting, the classical approach is to use a SoftMax output of dimension $$\mid \mathcal{A}\mid$$. In our specific case, $$\mathcal{A} \in \mathbb{N}^3$$ with $$a_i < L_{opt} \> \forall \> a_i \>in \> \mathcal{A} $$. That implies, generating a multivariate probability distribution over the action space. The stake of the model to use is real here for computational efficiency purpose.  
 
-Indeed, when dealing with multidimensional discrete action space, the number of possible action is exponential with respect to the number of dimension. Let's recall that our action is defined by the 3-tuple $$a_t = (l, i_{opt}, i_{co})$$, let's imagine we are going perform crossover on $$S_{opt}$$ with $$L_{opt}=50$$. Each of $$l, i_{opt}, i_{co}$$ can take a positive discrete value inferior to $50$.  Since using all possible combination with order and repetition (and thus $50^3$ different actions) would force the neural network to handle a 125000 output layer shape, I'm quite unwilling to go this way. 
+Indeed, when dealing with multidimensional discrete action space, the number of possible action is exponential with respect to the number of dimension. Let's recall that our action is defined by the 3-tuple $$a_t = (l, i_{opt}, i_{co})$$, let's imagine we are going perform crossover on $$S_{opt}$$ with $$L_{opt}=50$$. Each of $$l, i_{opt}, i_{co}$$ can take a positive discrete value inferior to $$50$$.  Since using all possible combination with order and repetition (and thus $$50^3$$ different actions) would force the neural network to handle a 125000 output layer shape, I'm quite unwilling to go this way. 
 
 [Recent work](https://arxiv.org/pdf/1806.00589.pdf) have shown autoregressive model can be used to sample sequentially $$A_i = (a_1, a_2, ..., a_i)$$ from our policy. In that way sampling from model only requires summing over $$O(3*L_{opt})$$ effort whereas the aforementioned model requires $$O((L_{opt})^3)$$. 
 
@@ -112,7 +112,7 @@ Another way of predicting multivariate distribution is to use a single neural ne
 
 #### Critic
 
-It is a much more easier network to handle, since it only estimates the value of a particular state $s_t$. A simple neural network taking the state $s_t$ as input and outputting a scalar will make the job.
+It is a much more easier network to handle, since it only estimates the value of a particular state $$s_t$$. A simple neural network taking the state $$s_t$$ as input and outputting a scalar will make the job.
 
 
 
@@ -130,7 +130,7 @@ Good exploration method is a important point with large action space, the entrop
 
 **Entropy**
 
-To abbreviate notations, we write $$p_{\theta}(a)$$ for $$\pi_{\theta}(a|s_t)$$ and $$a_i$$ for $$(a_1, a_2, .., a_i)$$. We consider auto-regressive models whereby the sample components $$a_i, \> i = 1, 2, .., d$$ are sequentially generated, with $$d=2$$ in our case. In particular, after obtaining $$a_1, a_2, ..., a_{i-1}$$, we will generate $$a_i \in \mathcal{A}_i$$ from some parameterized distribution $p_{\theta}(.|a_{i-1})$ defined over the one-dimensional set $\mathcal{A}_i$. After generating the distribution $$p_{\theta}(.|a_{i-1}) \>\forall\> i$$ and sample the action component $$a_1, a_2, .., a_d$$ sequentially, we then define $$p_{\theta}(a) = \prod_{i=1}^{d}p_{\theta}(a_i\mid a_{i-1})$$.
+To abbreviate notations, we write $$p_{\theta}(a)$$ for $$\pi_{\theta}(a\mid s_t)$$ and $$a_i$$ for $$(a_1, a_2, .., a_i)$$. We consider auto-regressive models whereby the sample components $$a_i, \> i = 1, 2, .., d$$ are sequentially generated, with $$d=2$$ in our case. In particular, after obtaining $$a_1, a_2, ..., a_{i-1}$$, we will generate $$a_i \in \mathcal{A}_i$$ from some parameterized distribution $$p_{\theta}(.\mid a_{i-1})$$ defined over the one-dimensional set $\mathcal{A}_i$. After generating the distribution $$p_{\theta}(.\mid a_{i-1}) \>\forall\> i$$ and sample the action component $$a_1, a_2, .., a_d$$ sequentially, we then define $$p_{\theta}(a) = \prod_{i=1}^{d}p_{\theta}(a_i\mid a_{i-1})$$.
 
 ​	$$H_{\theta_t} = - \sum_{a_i \in \mathcal{A}} p_{\theta}(a)log(p_{\theta}(a))$$
 
@@ -142,7 +142,7 @@ To abbreviate notations, we write $$p_{\theta}(a)$$ for $$\pi_{\theta}(a|s_t)$$ 
 
 **Crude unbiased estimator**
 
-During training within an episode, for each state $st$, the policy generates an action $a$. We refer to this generated action as the episodic sample. A crude approximation of the entropy bonus is:
+During training within an episode, for each state $$st$$, the policy generates an action $$a$$. We refer to this generated action as the episodic sample. A crude approximation of the entropy bonus is:
 
 $$H_{\theta}^{crude}=-log\>p_{\theta}(a)=-\sum_{i=1}^{d}p_{\theta}(a_i\mid a_{i-1})$$
 
