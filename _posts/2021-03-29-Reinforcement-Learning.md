@@ -51,21 +51,51 @@ You will find the algorithms lists in the sub directories. I've decided to separ
 
 ![learning acrobot]({{ site.baseurl }}/images/acrobot_learning.png)
 
+*Cumulative Reward per episode (rolling average window: 10)*
+
 **Average reward last 100 episodes:** -190.9
 
 - *Cartpole-v0*
 
 ![learning cartpole]({{ site.baseurl }}/images/cartpole_learning.png)
 
+*Cumulative Reward per episode (rolling average window: 50)*
+
 **Average reward last 100 episodes:** 195.6
 
 - *LunarLander-v2*
 
-![lunarlander learning.png]({{ site.baseurl }}/images/lunarlander_learning.png)
+![lunarlander learning]({{ site.baseurl }}/images/lunarlander_learning.png)
+
+*Cumulative Reward per episode (rolling average window: 10)*
 
 **Average reward last 100 episodes:** 88.4
 
 ### [3) PPO](https://github.com/BenoitLeguay/PPO)
 
+**Results**
+
+- CartPole-v0
+
+![cartpole_ppo_learning]({{ site.baseurl }}/images/cartpole_ppo_learning.png)
+
+*Cumulative Reward per episode (rolling average window: 10)*
+
+![cartpole_ppo_entropy]({{ site.baseurl }}/images/cartpole_ppo_entropy.png)
+
+*action distribution entropy per actor update (rolling average window: 500)*
+
 ### [4) DDPG](https://github.com/BenoitLeguay/DDPG)
+
+**Results**
+
+- Pendulum-v0
+
+![pendulum ddpg learning]({{ site.baseurl }}/images/pendulum_ddpg_learning.png)
+
+*Cumulative Reward per episode (rolling average window: 10)*
+
+![pendulum ddpg actions]({{ site.baseurl }}/images/pendulum_ddpg_actions.png)
+
+*Actions distributions*
 
