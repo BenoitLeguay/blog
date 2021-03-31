@@ -3,4 +3,4 @@ layout: post
 title: Time Series
 ---
 
-Time series sandbox to explore tools and forecasting method.
+Sandbox to explore time series manipulation tools and forecasting method through ARIMA, GAM, RNN.
