@@ -1,3 +1,8 @@
+---
+layout: post
+title: Reinforcement Learning for DNA sequence Optimization
+---
+
 Here is the description of the algorithm I designed to perform optimization on DNA sequences. 
 
 

@@ -1,3 +1,8 @@
+---
+layout: post
+title: Self Supervised Learning
+---
+
 In this section, we will show the efficiency of Self Supervised Learning with a very simple example.
 
 The goal here is to classify cats and dogs. Yet we don't have enough labeled data to used a classical supervised learning algorithm. Labeling data can be very long and expensive. 
