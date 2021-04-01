@@ -7,7 +7,7 @@ Below is listed my recent work on RL. From basic tabular SARSA to PPO, I explore
 
 ### [1) Reinforcement Learning basics](https://github.com/BenoitLeguay/Reinforcement_Learning_Basics) 
 
-[test]({{ site.baseurl }}/_posts/2021-03-29-test.md)
+[test]({{ site.baseurl }}/test)
 
 As a RL enthousiast I've decided to implement many of the algorithms I found in books, courses or papers.  To me, it is the best way to truly understand them.  In this repository, you will find implementation for many of the most known RL algorithms.
 
