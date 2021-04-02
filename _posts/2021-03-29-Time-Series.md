@@ -12,3 +12,5 @@ I didn't have the opportunity to work on time series  throughout my young career
 [click]({{subpost.url}})
 
 [click]({{ site.subpost }})
+
+[try here]({{site.baseurl}}/_subpost/time-series-basics)
