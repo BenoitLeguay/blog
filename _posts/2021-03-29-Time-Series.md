@@ -14,3 +14,11 @@ I didn't have the opportunity to work on time series  throughout my young career
 [click]({{ site.subpost }})
 
 [try here]({{site.baseurl}}/subpost/time-series-basics)
+
+
+
+{% for staff_member in site.subpost %}
+
+<a href="{{ staff_member.url }}"> try </a>
+
+{% endfor %}
