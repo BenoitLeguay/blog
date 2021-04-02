@@ -7,18 +7,8 @@ Sandbox to explore time series manipulation tools and forecasting method through
 
 I didn't have the opportunity to work on time series  throughout my young career. As I think it is an  important field in data analysis and prediction, I created this repository (and now this post) to practice and learn on concrete examples.
 
-<a href="{{ subpost.url }}">click here</a>
-
-[click]({{subpost.url}})
-
-[click]({{ site.subpost }})
-
-[try here]({{site.baseurl}}/subpost/time-series-basics)
-
-
-
-{% for staff_member in site.subpost %}
-
-<a href="{{ staff_member.url }}"> try </a>
-
+```html
+{% for album in site.subpost %}
+	<h2>{{ album.url }}</h2>
 {% endfor %}
+```
