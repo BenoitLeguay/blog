@@ -15,12 +15,9 @@ avatar: https://raw.githubusercontent.com/BenoitLeguay/blog/master/images/me.jpg
 # Flags below are optional
 #
 collections:
-  reinforcementlearning:
+  subpost:
     output: true
-    permalink: /reinforcement-learning/:name
-  timeseries:
-    output: true
-    permalink: /time-series/:name
+    permalink: /subpost/:name
 
 # Includes an icon in the footer for each username you enter
 footer-links:
