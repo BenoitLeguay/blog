@@ -17,7 +17,6 @@ avatar: https://raw.githubusercontent.com/BenoitLeguay/blog/master/images/me.jpg
 collections:
   subpost:
     output: true
-    permalink: /subpost/:name
 
 # Includes an icon in the footer for each username you enter
 footer-links:
