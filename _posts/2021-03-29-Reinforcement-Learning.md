@@ -17,7 +17,7 @@ More on Double Deep Q Network here
 
 
 
-### [3) PPO]({{site.baseurl}}rl/ppo)
+### [3) PPO]({{site.baseurl}}/rl/ppo)
 
 More on Proximal Policy Optimization here
 
