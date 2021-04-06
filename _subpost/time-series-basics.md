@@ -8,11 +8,11 @@ permalink: "/time-series/basics"
 
 We will use a common and widely used dataset: *Monthly anti-diabetic drug sales in Australia*
 
-![ts_drugs](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/ts_drugs.png)
+![ts_drugs]({{ site.baseurl }}/images/ts_drugs.png)
 
 We observe a strong upwards trend and a seasonality, a pattern that repeats each years. 
 
-![box_plot_drugs.png](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/box_plot_drugs.png)
+![box_plot_drugs.png]({{ site.baseurl }}/images/box_plot_drugs.png)
 
 These box plots are smart and simple ways to visualize the trend and the seasonality among our time series. 
 
@@ -22,7 +22,7 @@ These box plots are smart and simple ways to visualize the trend and the seasona
 
 We can decompose a time series with convolution filter applied to the data. There are 2 ways of doing it: additional decompose and multiplicative decompose. It depends on the assumption we choose, either we consider our series to be in this form  $$Y(t) = T(t)+S(t)+e(t)$$  or $$Y(t) = T(t)*S(t)*e(t)$$ where $$T$$ is the trend, $$S$$ is the seasonality and $$e$$ is the error (or the residuals).  For breakdown, firstly we estimate the trend with convolutional filters, then by removing this trend we can easily find the seasonality. 
 
-![ts_s_decompose.png](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/ts_s_decompose.png)
+![ts_s_decompose.png]({{ site.baseurl }}/images/ts_s_decompose.png)
 
 *The decomposition using the multiplicative assumption*
 
@@ -34,11 +34,11 @@ A stationary time series is one whose properties do not depend on the time at wh
 
 There are several ways to obtain stationarity, we can directly apply a function to our series or differencing it. For example, the square root of a non-stationary function can make it stationary. 
 
-![ts_s_root.png](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/ts_s_root.png)
+![ts_s_root.png]({{ site.baseurl }}/images/ts_s_root.png)
 
 One other way to achieve non stationarity is differencing. The order of difference is an hyper parameter to choose, we want the minimum order that make our series stationary. 
 
- ![ts_diff.png](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/ts_diff.png)
+ ![ts_diff.png]({{ site.baseurl }}/images/ts_diff.png)
 
 To check for stationarity among a time series we can use statistical test such as Augmented Dickey Fuller test (ADF Test). 
 
@@ -50,11 +50,11 @@ Identify and remove trend can be useful for multiple reasons. Removing trend can
 
 Here I show 2 techniques to remove trend from time series. Firstly, we can use the linear regression to estimate the trend of the series and then subtracts it. In the example bellow, we fit a linear function (blue) to our data (orange), then we simply subtract  the model from the time series. 
 
- ![ts_lr.png](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/ts_lr.png)
+ ![ts_lr.png]({{ site.baseurl }}/images/ts_lr.png)
 
 The other common way is to subtract the trend from the seasonality decomposition we just saw. 
 
- ![ts_se_decomp.png](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/ts_se_decomp.png)
+ ![ts_se_decomp.png]({{ site.baseurl }}/images/ts_se_decomp.png)
 
 
 
@@ -66,13 +66,13 @@ Now we learned about detrend a time series, we are going to focus about removing
 
 One very easy method is to find the seasonality period, (in our case 12 months), and to compute a rolling average with a the period as the window. 
 
- ![ts_deseason_rlg_avg.png](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/ts_deseason_rlg_avg.png)
+ ![ts_deseason_rlg_avg.png]({{ site.baseurl }}/images/ts_deseason_rlg_avg.png)
 
 
 
 A more sophisticated technique is to use the seasonality from the  decomposition and operate a subtraction.  
 
- ![ts_sea_decomp_sea_decomp.png](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/ts_sea_decomp_sea_decomp.png)
+ ![ts_sea_decomp_sea_decomp.png]({{ site.baseurl }}/images/ts_sea_decomp_sea_decomp.png)
 
 
 
@@ -80,5 +80,5 @@ A more sophisticated technique is to use the seasonality from the  decomposition
 
 When trying to model our time series it is important to remove missing value before. Here we show multiple ways to handle them: forward fill, backward fill, interpolation.
 
- ![ts_mis_value.png](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/ts_mis_value.png)
+ ![ts_mis_value.png]({{ site.baseurl }}/images/ts_mis_value.png)
 
