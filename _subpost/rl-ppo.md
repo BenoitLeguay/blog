@@ -2,9 +2,8 @@
 title: Proximal Policy Optimization
 layout: post
 permalink: "/rl/ppo"
+github: https://github.com/BenoitLeguay/PPO
 ---
-
-[Here is the repo](https://github.com/BenoitLeguay/PPO)
 
 **Results**
 

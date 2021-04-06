@@ -2,9 +2,8 @@
 title: Reinforcement Learning basics
 layout: post
 permalink: "/rl/basics"
+github: https://github.com/BenoitLeguay/Reinforcement_Learning_Basics
 ---
-
-[Here is the repo](https://github.com/BenoitLeguay/Reinforcement_Learning_Basics)
 
 You will find the algorithms lists in the sub directories. I've decided to separate them into 3 classes:	
 
