@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Reinforcement Learning for DNA sequence Optimization
+github: https://github.com/BenoitLeguay/DNA_RL
 ---
 
 Here is the description of the algorithm I designed to perform optimization on DNA sequences. The goal here is to maximize the *Oracle* output. The *Oracle* is basically a pre trained CNN that estimates the *usefulness* of one DNA sequence. Through an iterative process, our RL agent will aim at maximizing the output of this neural network by choosing an optimal crossover between 2 sequences.  One sequence is used to be maximized, the other is here to perform the crossover. 

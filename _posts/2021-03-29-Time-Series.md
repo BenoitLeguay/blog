@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Time Series
+github: https://github.com/BenoitLeguay/time-series
 ---
 
 [Here is the repo](https://github.com/BenoitLeguay/time-series)
