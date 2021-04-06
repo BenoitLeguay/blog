@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Test
+title: Time-Series
 permalink: "/time-series/basics"
 ---
 
