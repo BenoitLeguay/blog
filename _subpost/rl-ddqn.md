@@ -2,9 +2,8 @@
 title: Double Deep Q Network
 layout: post
 permalink: "/rl/ddqn"
+github: https://github.com/BenoitLeguay/DDQN
 ---
-
-[Here is the repo](https://github.com/BenoitLeguay/DDQN)
 
 ##### Results
 

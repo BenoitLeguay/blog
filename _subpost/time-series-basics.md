@@ -2,6 +2,7 @@
 title: Time-Series
 layout: post
 permalink: "/time-series/basics"
+github: https://github.com/BenoitLeguay/time-series
 ---
 
 ## Time series basic manipulation
