@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Reinforcement Learning
+github: https://github.com/BenoitLeguay/Reinforcement_Learning_Basics
 ---
 
 Below is listed my recent work on RL. From basic tabular SARSA to PPO, I explored Reinforcement Learning literature and implemented most of it.  

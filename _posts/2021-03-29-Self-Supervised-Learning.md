@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Self Supervised Learning
+github: https://github.com/BenoitLeguay/Self-Supervised-Learning
 ---
 
 In this section, we will show the efficiency of Self Supervised Learning with a very simple example.
