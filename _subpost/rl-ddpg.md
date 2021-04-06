@@ -10,10 +10,10 @@ permalink: "/rl/ddpg"
 
 - Pendulum-v0
 
-![pendulum ddpg learning](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/pendulum_ddpg_learning.png)
+![pendulum ddpg learning]({{ site.baseurl }}/images/pendulum_ddpg_learning.png)
 
 *Cumulative Reward per episode (rolling average window: 10)*
 
-![pendulum ddpg actions](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/pendulum_ddpg_actions.png)
+![pendulum ddpg actions]({{ site.baseurl }}/images/pendulum_ddpg_actions.png)
 
 *Actions distributions*

@@ -10,7 +10,7 @@ permalink: "/rl/ddqn"
 
 - *Acrobot-v1*
 
-![learning acrobot](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/acrobot_learning.png)
+![learning acrobot]({{ site.baseurl }}/images/acrobot_learning.png)
 
 *Cumulative Reward per episode (rolling average window: 10)*
 
@@ -18,7 +18,7 @@ permalink: "/rl/ddqn"
 
 - *Cartpole-v0*
 
-![learning cartpole](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/cartpole_learning.png)
+![learning cartpole]({{ site.baseurl }}/images/cartpole_learning.png)
 
 *Cumulative Reward per episode (rolling average window: 50)*
 
@@ -26,7 +26,7 @@ permalink: "/rl/ddqn"
 
 - *LunarLander-v2*
 
-![lunarlander learning](/home/benoit/Documents/work/blog/_posts/{{ site.baseurl }}/images/lunarlander_learning.png)
+![lunarlander learning]({{ site.baseurl }}/images/lunarlander_learning.png)
 
 *Cumulative Reward per episode (rolling average window: 10)*
 
