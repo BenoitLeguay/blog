@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Test
-published: false
+permalink: "/time-series/basics"
 ---
 
 ## Time series basic manipulation
