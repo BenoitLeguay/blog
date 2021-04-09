@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GANs Training Journey: Pokemon
+title: GANs Training Journey Pokemon
 github: https://github.com/BenoitLeguay/GAN_IconClass
 ---
 

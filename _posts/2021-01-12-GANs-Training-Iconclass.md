@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GANs Training Journey: Initial from IconClass
+title: GANs Training Journey Initial from IconClass
 github: https://github.com/BenoitLeguay/GAN_IconClass
 ---
 
