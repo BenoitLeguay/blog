@@ -10,9 +10,13 @@ The Pokemon sprites dataset has advantages, uniform low resolution images with a
 
 ### 1) Test with Whole dataset (WGANs)
 
+(description in progress)
+
 ![gans-pokemon-whole.png]({{site.baseurl}}/images/gans/gans-pokemon-whole.png)
 
 ### 2) Test with a n-Pokemon dataset (WGANs)
+
+(description in progress)
 
 ![gans-pokemon-1.png]({{site.baseurl}}/images/gans/gans-pokemon-1.png)
 
@@ -22,6 +26,11 @@ The Pokemon sprites dataset has advantages, uniform low resolution images with a
 
 ### 3)  Test with pre-trained architecture
 
+(description in progress)
+
 
 
 ### 4) Auxiliary GANs
+
+(implementation in progress)
+
