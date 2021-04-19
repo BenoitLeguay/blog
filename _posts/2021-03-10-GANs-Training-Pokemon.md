@@ -38,13 +38,13 @@ We will compare 3 GANs versions:
 
 ## A) DCGANs
 
-DCGANs is simple version of GANs (described hereinabove) that uses convolutional layers. Let's see how our DCGAN works on this task.   <br />
+DCGANs is simple version of GANs (described hereinabove) that uses convolutional layers. Let's see how our DCGAN works on this task.   <br /><br />
 
 **Discriminator:**
 
 ![DCGAN discriminator.png]({{site.baseurl}}/images/gans/DCGAN discriminator.png)
 
-Each convolutional block consists of a Conv2d/ Batch Normalization/ LeakyReLu sequence. The output of the *Discriminator* is then fed into a sigmoid function. This gives us a score between 0 and 1, that is, the likelihood to be either a real or a fake sample.   <br />
+Each convolutional block consists of a Conv2d/ Batch Normalization/ LeakyReLu sequence. The output of the *Discriminator* is then fed into a sigmoid function. This gives us a score between 0 and 1, that is, the likelihood to be either a real or a fake sample.   <br /><br />
 
 
 
