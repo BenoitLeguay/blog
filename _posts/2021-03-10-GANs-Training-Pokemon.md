@@ -68,7 +68,7 @@ As a unit test, I like to test my GAN to reproduce a single image. This is also 
 
 ![dcgan-110e.png]({{site.baseurl}}/images/gans/dcgan-110e.png) *110 epochs*
 
-![dcgan-150e.png]({{site.baseurl}}/images/gans/dcgan-150e.png) *150 epochs*
+![dcgan-150e.png]({{site.baseurl}}/images/gans/dcgan-150e.png) *150 epochs*  
 
 
 
