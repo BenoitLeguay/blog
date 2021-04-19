@@ -22,7 +22,7 @@ The Pokemon sprites dataset has advantages, uniform low resolution images with a
 
 The images are 64x64 resolution, with 3 channels. The only preprocessing made is a minmax scale. The goal of this operation is to normalize images between -1 and 1, this can make training faster and reduces the chance of getting stuck in local optima.
 
-$$x_{norm} = 2*(\frac{x - x_{min}}{x_{max} - x_{min}}) - 1$$
+$$x_{norm} = 2*(\frac{x - x_{min}}{x_{max} - x_{min}}) - 1$$  
 
 
 
@@ -38,13 +38,13 @@ We will compare 3 GANs versions:
 
 ## A) DCGANs
 
-DCGANs is simple version of GANs (described hereinabove) that uses convolutional layers. Let's see how our DCGAN works on this task. 
+DCGANs is simple version of GANs (described hereinabove) that uses convolutional layers. Let's see how our DCGAN works on this task.   
 
 **Discriminator:**
 
 ![DCGAN discriminator.png]({{site.baseurl}}/images/gans/DCGAN discriminator.png)
 
-Each convolutional block consists of a Conv2d/ Batch Normalization/ LeakyReLu sequence. The output of the *Discriminator* is then fed into a sigmoid function. This gives us a score between 0 and 1, that is, the likelihood to be either a real or a fake sample. 
+Each convolutional block consists of a Conv2d/ Batch Normalization/ LeakyReLu sequence. The output of the *Discriminator* is then fed into a sigmoid function. This gives us a score between 0 and 1, that is, the likelihood to be either a real or a fake sample.   
 
 
 
@@ -76,21 +76,21 @@ As a unit test, I like to test my GAN to reproduce a single image. This is also 
 
 ![dcgan-fid.svg]({{site.baseurl}}/images/gans/dcgan-fid.svg) *Frechet Inception Distance over epochs*
 
-The Frechet Inception Distance score, or FID for short, is a metric that calculates the distance between feature vectors calculated for real and generated images
+The Frechet Inception Distance score, or FID for short, is a metric that calculates the distance between feature vectors calculated for real and generated images  
 
 
 
 ![dcgan-discri.svg]({{site.baseurl}}/images/gans/dcgan-discri.svg) *Discriminator Loss over updates*
 
-$$L_{D} = \frac{1}{m} \sum^{m}_{i=1}[log D(x^{(i)})+log(1 - D(G(z^{(i)})))]$$
+$$L_{D} = \frac{1}{m} \sum^{m}_{i=1}[log D(x^{(i)})+log(1 - D(G(z^{(i)})))]$$  
 
 
 
 ![dcgan-gen.svg]({{site.baseurl}}/images/gans/dcgan-gen.svg) *Generator Loss over updates*
 
- $$L_G = \frac{1}{m}\sum^{m}_{i=1}-log(D(G(z^{(i)})))$$
+ $$L_G = \frac{1}{m}\sum^{m}_{i=1}-log(D(G(z^{(i)})))$$  
 
-
+  
 
 ## B)  WGANs with GP
 
