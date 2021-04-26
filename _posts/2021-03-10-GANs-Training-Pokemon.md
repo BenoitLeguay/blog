@@ -200,15 +200,22 @@ $$L_G= - E_z[C(G(z))]$$
 
 ## C) Auxiliary Classifier GANs
 
-ACGANs are a type of GAN where you add a label classification module to improve GANs understanding on the real data. This also allows to generate label-based fake samples.  It is an improvement from the Conditional GANs architecture. 
+ACGANs are a type of GAN where you add a label classification module to improve GANs understanding on the real data by stabilizing training. This also allows to generate label-based fake samples. It is an improvement from the Conditional GANs architecture. 
 
-The discriminator seeks to maximize the probability of correctly classifying real and fake images and correctly predicting the class label of a real or fake image. The generator seeks  to minimize the ability of the discriminator to discriminate real and  fake images whilst also maximizing the ability of the discriminator predicting the class label of real and fake images. (@machinelearningmastery)
+The discriminator seeks to maximize the probability of correctly classifying real and fake images and correctly predicting the class label of a real or fake image. The generator seeks  to minimize the ability of the discriminator to discriminate real and fake images whilst also maximizing the ability of the discriminator predicting the class label of real and fake images. (@machinelearningmastery)
+
+All these advantages have a cost since it requires labels. In our case we use 2 different label type: 
+
+- Pokemon Type (water, fire, grass, electric etc...). 18 unique types.
+- Pokemon Body Type (quadruped, bipedal, wings, serpentine etc..). 10 unique body types. 
 
 
 
+![acgan-schema.png]({{site.baseurl}}/images/gans/acgan-schema.png)
 
 
 
+This architecture is compatible with most of GANs' ones, we will describe it on a DCGANs for simplification purpose. 
 
 
 
@@ -218,13 +225,43 @@ The discriminator seeks to maximize the probability of correctly classifying rea
 
 **Generator upsampling methods**
 
+Convolutional neural networks are originally built to take an image as input, in the Generator case we want to do it the other way. To do so, we have several options. We will explore 3 different methods:
+
+- *Transpose Convolution*
+
+It is the operation inverse to convolution. 
+
+![convtranspose.gif]({{site.baseurl}}/images/gans/convtranspose.gif)
+
+<br />
+
+- *Convolution and Upsample (nearest)*
+
+![upsampling.png]({{site.baseurl}}/images/gans/upsampling.png)
+
+
+
+<br />
+
+- *Color Picker* 
+
+Color Picker is a technique I found [here](https://github.com/ConorLazarou/PokeGAN), the idea is to generate separately each *Red Green Blue* channel.  Each is created thanks to 2 components, a color palette and a distribution over this palette, we use the latter to weight the palette and to create a single channel 64x64 matrix. The palette tensor is the same for each channel while the distribution is computed 3 times (*RGB*). 
+
+
+
 
 
 <br /><br />
 
 **Label smoothing**
 
+Label smoothing is a regularization technique that prevent discriminator overconfidence. As the dataset is passed for several epochs, the discriminator risks to overfit totally outplays the Generator, giving irrelevant information. Thus, we want to penalize it when its prediction is to to high. To do so, we change our ground truth label from 1.0 to 0.9. That results in penalizing over 0.9 prediction on real samples. 
 
+![D-Accuracy_Real.svg]({{site.baseurl}}/images/gans/D-Accuracy_Real.svg)
+
+![D-Accuracy_Fake.svg]({{site.baseurl}}/images/gans/D-Accuracy_Fake.svg)
+
+Here above is the discriminator prediction over time for both the fake and real examples. We used 4 different seeds and run the same GANs with and without label smoothing. 
 
 <br /><br />
 
@@ -234,7 +271,7 @@ The discriminator seeks to maximize the probability of correctly classifying rea
 
 <br /><br />
 
-**Convolution Transpose or Upsample and Convolution**
+**Instance Noise**
 
 
 
