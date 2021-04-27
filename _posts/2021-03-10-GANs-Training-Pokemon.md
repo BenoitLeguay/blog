@@ -217,13 +217,59 @@ All these advantages have a cost since it requires labels. In our case we use 2 
 
 This architecture is compatible with most of GANs' ones, we will describe it on a DCGANs for simplification purpose. 
 
+In the ACGANs, every generated sample (fake) receive a label in addition to the noise. This label adds information that helps the model to create sample based on class. On the other hand, the discriminator tries to predict a label for both real and fake examples. 
 
+Depending on the GANs architecture you compute the associate loss in which you add the auxiliary loss. Typically, we use the negative log likelihood loss since we perform a multi-class prediction.  
+
+<br />
+
+**Generator**
+
+![acgan-discri.png]({{site.baseurl}}/images/gans/acgan-discri.png)
+
+<br />
+
+Here is an example that shows how the label affects the generation. I use here the same noise vector with different labels (*grass, water, fire*). It has a grasp on the main color associated with the types.
+
+![acgan-type-comparison.png]({{site.baseurl}}/images/gans/acgan-type-comparison.png)
+
+![acgan-type-comparison2.png]({{site.baseurl}}/images/gans/acgan-type-comparison2.png)
+
+
+
+<br />
+
+**Discriminator**
+
+![acgan-discri.png]({{site.baseurl}}/images/gans/acgan-discri.png)
+
+To evaluate the **Discriminator** we calculate its accuracy on both auxiliary and adversarial task. Also I add the auxiliary distribution entropy to track failure. Below you have a example for training.
+
+ ![acgan-discriminator.png]({{site.baseurl}}/images/gans/acgan-discriminator.png)
+
+
+
+<br />
+
+**Unit test**
+
+
+
+<br />
+
+### Training example
+
+
+
+
+
+<br /><br />
 
 ## D) Architecture & Hyper Parameters
 
 <br />
 
-**Generator upsampling methods**
+#### **Generator upsampling methods**
 
 Convolutional neural networks are originally built to take an image as input, in the Generator case we want to do it the other way. To do so, we have several options. We will explore 3 different methods:
 
@@ -245,7 +291,15 @@ It is the operation inverse to convolution.
 
 - *Color Picker* 
 
-Color Picker is a technique I found [here](https://github.com/ConorLazarou/PokeGAN), the idea is to generate separately each *Red Green Blue* channel.  Each is created thanks to 2 components, a color palette and a distribution over this palette, we use the latter to weight the palette and to create a single channel 64x64 matrix. The palette tensor is the same for each channel while the distribution is computed 3 times (*RGB*). 
+Color Picker is a technique I found [here](https://github.com/ConorLazarou/PokeGAN), the idea is to generate separately each *Red Green Blue* channel.  Each is created thanks to 2 components, a color palette and a distribution over this palette, we use the latter to weight the palette and to create a single channel 64x64 matrix. The palette tensor is the same for each channel while the distribution is computed 3 times (*R,G,B*). 
+
+
+
+**Comparison**
+
+![comparison-upsample-convtranspose.png]({{site.baseurl}}/images/gans/comparison-upsample-convtranspose.png)
+
+Here we have fake samples from a WGAN, with both upsample + conv method and convtranspose. The Upsample method seems to create more complex structure, it is a pros when talking about Pokemon shape but a drawback concerning colors. The generated image has too many colors and it appears that this architecture has a hard time creating a uniform color shape. The ColorPicker Generator architecture answers this handicap. 
 
 
 
@@ -253,7 +307,7 @@ Color Picker is a technique I found [here](https://github.com/ConorLazarou/PokeG
 
 <br /><br />
 
-**Label smoothing**
+#### **Label smoothing**
 
 Label smoothing is a regularization technique that prevent discriminator overconfidence. As the dataset is passed for several epochs, the discriminator risks to overfit totally outplays the Generator, giving irrelevant information. Thus, we want to penalize it when its prediction is to to high. To do so, we change our ground truth label from 1.0 to 0.9. That results in penalizing over 0.9 prediction on real samples. 
 
@@ -265,13 +319,13 @@ Here above is the discriminator prediction over time for both the fake and real 
 
 <br /><br />
 
-**Number of features in both networks**
+#### **Number of features in both networks**
 
 
 
 <br /><br />
 
-**Instance Noise**
+#### **Instance Noise**
 
 
 
