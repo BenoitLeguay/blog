@@ -6,8 +6,6 @@ github: https://github.com/BenoitLeguay/GAN_IconClass
 
 
 
-## Introduction
-
 GANs are a framework for teaching a DL model to capture the training data’s distribution so we can generate new data from that same distribution. GANs were invented by Ian Goodfellow in 2014 and first described in the paper [Generative Adversarial Nets](https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf). They are made of two distinct models, a *generator* and a *discriminator*. The job of the generator is to spawn ‘fake’ images that look like the training images. The job of the discriminator is to look at an image and output whether or not it is a real training image or a fake image from the generator. During training, the generator is constantly trying to outsmart the discriminator by generating better and better fakes, while the discriminator is working to become a better detective and correctly classify the real and fake images. The equilibrium of this game is when the generator is generating perfect fakes that look as if they came directly from the training data, and the discriminator is left to always guess at 50% confidence that the generator output is real or fake. (@pytorch)
 
 ![gan-schema.svg]({{site.baseurl}}/images/gans/gan-schema.svg)
@@ -48,7 +46,7 @@ $$E_x[log(D(x))] + E_z[log(1 - D(G(z)))]$$
 
 <br />
 
-**Discriminator:**
+#### **Discriminator:**
 
 ![DCGAN discriminator.png]({{site.baseurl}}/images/gans/DCGAN discriminator.png)
 
@@ -62,7 +60,7 @@ It can be seen as a sum of 2 binary cross entropy loss where labels are ones for
 
 
 
-**Generator:**
+#### **Generator:**
 
 ![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png)
 
@@ -76,7 +74,7 @@ The loss function is different from the minimax one we defined before, but the g
 
 
 
-**Unit test**
+#### **Unit test**
 
 As a unit test, I like to make my GAN to reproduce a single image. This is also a good comparison tool across multiple GANs architectures, when talking about learning pace mostly. <br />
 
@@ -90,41 +88,51 @@ Our GANs is fed with the same image during the whole training. The dataloader co
 
 ![dcgan-1p-150e.png]({{site.baseurl}}/images/gans/dcgan-1p-150e.png) *150 epochs*
 
+
+
+Now we know that our DCGANs flow works we can train it on the whole dataset.
+
 <br /><br />
 
-### Training example
+#### Training example
 
-![dcgan-10e.png]({{site.baseurl}}/images/gans/dcgan-10e.png) *10 epochs*
+![dcgan-10e.png]({{site.baseurl}}/images/gans/dcgan-ex-e10.png) *10 epochs*
 
-![dcgan-30e.png]({{site.baseurl}}/images/gans/dcgan-30e.png) *30 epochs*
+![dcgan-50e.png]({{site.baseurl}}/images/gans/dcgan-ex-e50.png) *50 epochs*
 
-![dcgan-70e.png]({{site.baseurl}}/images/gans/dcgan-70e.png) *70 epochs*
+![dcgan-100e.png]({{site.baseurl}}/images/gans/dcgan-ex-e100.png) *100 epochs*
 
-![dcgan-110e.png]({{site.baseurl}}/images/gans/dcgan-110e.png) *110 epochs*
+![dcgan-250e.png]({{site.baseurl}}/images/gans/dcgan-ex-e250.png) *250 epochs*
 
-![dcgan-150e.png]({{site.baseurl}}/images/gans/dcgan-150e.png) *150 epochs*<br />
+![dcgan-400e.png]({{site.baseurl}}/images/gans/dcgan-ex-e400.png) *400 epochs*
+
+![dcgan-800e.png]({{site.baseurl}}/images/gans/dcgan-ex-e800.png) *800 epochs*
 
 
 
 <br />
 
-![dcgan-fid.svg]({{site.baseurl}}/images/gans/dcgan-fid.svg) *Frechet Inception Distance over epochs*
+<br />
 
-The Frechet Inception Distance score, or FID for short, is a metric that calculates the distance between feature vectors calculated for real and generated images. It uses the *Inception_v3* deep neural network to extract a latent space of every images.<br /><br />
+![dcgan-discri.svg]({{site.baseurl}}/images/gans/dcgan-ex-dloss.png) *Discriminator Loss over updates*
 
+<br />
 
+![dcgan-gen.svg]({{site.baseurl}}/images/gans/dcgan-ex-gloss.png) *Generator Loss over updates*
 
-![dcgan-discri.svg]({{site.baseurl}}/images/gans/dcgan-discri.svg) *Discriminator Loss over updates*
+<br />
 
-   <br /><br />
+![dcgan-ex-facc.png]({{site.baseurl}}/images/gans/dcgan-ex-facc.png)*Discriminator accuracy on fake examples*
 
+<br />
 
+![dcgan-ex-racc.png]({{site.baseurl}}/images/gans/dcgan-ex-racc.png)*Discriminator accuracy on real examples*
 
-![dcgan-gen.svg]({{site.baseurl}}/images/gans/dcgan-gen.svg) *Generator Loss over updates*
+<br />
 
+![dcgan-fid.svg]({{site.baseurl}}/images/gans/dcgan-ex-fid.svg) *Frechet Inception Distance over epochs*
 
-
-
+The Frechet Inception Distance score, or FID for short, is a metric that calculates the distance between feature vectors calculated for real and generated images. It uses the *Inception_v3* deep neural network to extract a latent space of every images.
 
 <br /><br />
 
@@ -154,7 +162,7 @@ Another WGAN version tries to guarantee this constraint by clipping the weight u
 
 <br /><br />
 
-**Critic**
+#### **Critic**
 
 ![DCGAN discriminator.png]({{site.baseurl}}/images/gans/DCGAN discriminator.png)
 
@@ -176,7 +184,7 @@ with $$\hat{x} = \epsilon x+(1-\epsilon) G(z)$$
 
 <br /><br />
 
-**Generator:**
+#### **Generator:**
 
 ![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png)
 
@@ -188,13 +196,75 @@ $$L_G= - E_z[C(G(z))]$$
 
 <br /><br />
 
-**Unit test**
+#### **Unit test**
 
+**Real samples**
 
+![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png)
+
+<br />
+
+**Training**
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-10e.png)*10 epochs*
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-25e.png)*25 epochs*
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-40e.png)*40 epochs*
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-60e.png)*60 epochs*
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-100e.png)*100 epochs*
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-200e.png)*200 epochs*
+
+<br />
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-gloss.png)*Generator Loss over epochs*
+
+<br />
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-closs.png)*Critic Loss over epochs*
+
+<br />
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-fid.png)*Frechet Inception distance*
+
+<br />
+
+<br />
 
 ### Training example
 
+![wgan-10e.png]({{site.baseurl}}/images/gans/wgan-ex-e10.png) *10 epochs*
 
+![wgan-50e.png]({{site.baseurl}}/images/gans/wgan-ex-e50.png) *50 epochs*
+
+![wgan-100e.png]({{site.baseurl}}/images/gans/wgan-ex-e100.png) *100 epochs*
+
+![wgan-250e.png]({{site.baseurl}}/images/gans/wgan-ex-e250.png) *250 epochs*
+
+![wgan-400e.png]({{site.baseurl}}/images/gans/wgan-ex-e400.png) *400 epochs*
+
+![wgan-600e.png]({{site.baseurl}}/images/gans/wgan-ex-e600.png) *600 epochs*
+
+![wgan-800e.png]({{site.baseurl}}/images/gans/wgan-ex-e800.png) *800 epochs*
+
+<br />
+
+<br />
+
+![dcgan-discri.svg]({{site.baseurl}}/images/gans/wgan-ex-closs.png) *Discriminator Loss over updates*
+
+<br />
+
+![dcgan-gen.svg]({{site.baseurl}}/images/gans/wgan-ex-gloss.png) *Generator Loss over updates*
+
+<br />
+
+![dcgan-fid.svg]({{site.baseurl}}/images/gans/wgan-ex-fid.svg) *Frechet Inception Distance over epochs*
+
+<br /><br />
 
 
 
@@ -269,7 +339,51 @@ To evaluate the **Discriminator** we calculate its accuracy on both auxiliary an
 
 <br />
 
-#### **Generator upsampling methods**
+#### **1) Hyper parameters** 
+
+Here I talk about the hyper parameters, and regularization techniques I implemented that stabilizes training, avoiding mode collapse or divergence.
+
+<br />
+
+- Neural network weight initialization
+
+
+
+<br />
+
+- Optimizer learning rate
+
+
+
+<br />
+
+- Neural network features
+
+
+
+<br />
+
+- Z space dimension and distribution
+
+
+
+<br />
+
+- Label smoothing
+
+
+
+<br />
+
+- Instance noise
+
+
+
+<br />
+
+<br />
+
+#### **2) Generator upsampling methods**
 
 Convolutional neural networks are originally built to take an image as input, in the Generator case we want to do it the other way. To do so, we have several options. We will explore 3 different methods:
 
@@ -293,13 +407,15 @@ It is the operation inverse to convolution.
 
 Color Picker is a technique I found [here](https://github.com/ConorLazarou/PokeGAN), the idea is to generate separately each *Red Green Blue* channel.  Each is created thanks to 2 components, a color palette and a distribution over this palette, we use the latter to weight the palette and to create a single channel 64x64 matrix. The palette tensor is the same for each channel while the distribution is computed 3 times (*R,G,B*). 
 
-
+<br />
 
 **Comparison**
 
 ![comparison-upsample-convtranspose.png]({{site.baseurl}}/images/gans/comparison-upsample-convtranspose.png)
 
-Here we have fake samples from a WGAN, with both upsample + conv method and convtranspose. The Upsample method seems to create more complex structure, it is a pros when talking about Pokemon shape but a drawback concerning colors. The generated image has too many colors and it appears that this architecture has a hard time creating a uniform color shape. The ColorPicker Generator architecture answers this handicap. 
+Here we have fake samples from a WGAN, with both upsample + conv method and convtranspose. The Upsample method seems to create more complex structure. It is a benefit when talking about Pokemon shape since it outputs limbs etc..  but a drawback concerning colors. The generated image has too many colors making the Pokemon unreal. Even with a long training, it appears that this architecture has a hard time creating a uniform color shape. 
+
+The ColorPicker Generator architecture answers this handicap. Indeed it benefits from the complexity given by the upsample method and gets uniform colors with the help of the palette-oriented architecture. 
 
 
 
@@ -307,29 +423,7 @@ Here we have fake samples from a WGAN, with both upsample + conv method and conv
 
 <br /><br />
 
-#### **Label smoothing**
 
-Label smoothing is a regularization technique that prevent discriminator overconfidence. As the dataset is passed for several epochs, the discriminator risks to overfit totally outplays the Generator, giving irrelevant information. Thus, we want to penalize it when its prediction is to to high. To do so, we change our ground truth label from 1.0 to 0.9. That results in penalizing over 0.9 prediction on real samples. 
-
-![D-Accuracy_Real.svg]({{site.baseurl}}/images/gans/D-Accuracy_Real.svg)
-
-![D-Accuracy_Fake.svg]({{site.baseurl}}/images/gans/D-Accuracy_Fake.svg)
-
-Here above is the discriminator prediction over time for both the fake and real examples. We used 4 different seeds and run the same GANs with and without label smoothing. 
-
-<br /><br />
-
-#### **Number of features in both networks**
-
-
-
-<br /><br />
-
-#### **Instance Noise**
-
-
-
-<br /><br />
 
 ![gan-meme.png]({{site.baseurl}}/images/gans/gan-meme.png)
 
