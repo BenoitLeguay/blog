@@ -198,6 +198,8 @@ $$L_G= - E_z[C(G(z))]$$
 
 #### **Unit test**
 
+<br />
+
 **Real samples**
 
 ![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png)
