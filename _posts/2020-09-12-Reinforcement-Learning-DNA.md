@@ -6,9 +6,11 @@ github: https://github.com/BenoitLeguay/DNA_RL
 
 Here is the description of the algorithm I designed to perform optimization on DNA sequences. The goal here is to maximize the *Oracle* output. The *Oracle* is basically a pre trained CNN that estimates the *usefulness* of one DNA sequence. Through an iterative process, our RL agent will aim at maximizing the output of this neural network by choosing an optimal crossover between 2 sequences.  One sequence is used to be maximized, the other is here to perform the crossover. 
 
-
+<br/><br/>
 
 # Algorithm description
+
+<br/>
 
 ## 1. Markovian Decision process
 
@@ -16,7 +18,7 @@ For this algorithm, we are going to optimize a DNA sequence iteratively.
 
 A Markov Decision Process (MDP) is a 6-tuple $$(S,A,P,R,γ,D)$$, where $$S$$ is the state space of the process,$$A$$ is  the  action  space, $$P$$ is a Markovian  transition model $$P(s′\mid s,a)$$ denotes the probability of a transition to state $$s′$$ when taking action $$a$$ in state $$s$$, $$R$$ is a reward function $$R(s,a)$$ is the expected reward for taking action $$a$$ in state $$s$$, $$γ∈(0,1)$$ is a discount factor for future rewards, and $$D$$ is the initial state distribution. A deterministic policy $$π$$ for an MDP is a mapping $$π:S → A$$ from states to actions; $$π(s)$$ denotes the action choice in state $$s$$.
 
-
+<br/>
 
 #### State
 
@@ -24,19 +26,19 @@ Our state $$s_t$$ is going to be the current sequence to be optimized at time $$
 
 Alternatively, the state $$s_{t}$$ could be seen as the concatenation of both $$S_{opt}$$ and $$S_{co}$$ with $$L_{opt} = L_{co}$$. That would allow multiple enhancements for larger computation cost. First crossovers could modify $$S_{co}$$ permitting a wider modification range. Moreover, that makes us free of choosing arbitrarily a $$S_{co}$$. 
 
-
+<br/>
 
 #### Action and Transition function
 
 The action is defined in a **discrete 3-dimensional** space such as $$a_t = (l, i_{opt}, i_{co})$$, where $$l$$ is the crossover length, $$i_{opt}$$ and $$i_{co}$$ are respectively the crossover starting point (*i.e the index*) for $$S_{opt}$$ and $$S_{co}$$. In that way we can perform all types of crossover. The transition function $$P(s'\mid s, a)$$ is then purely deterministic. I describe the function approximation architecture in section 3. 
 
-
+<br/>
 
 #### Reward
 
 The reward function is handle by a ***Oracle***. This neural network takes a DNA sequence as input and output its estimation of how good is it. So $$r_t = Oracle(s_{t})$$ with $$r_t \in [0, 1]$$. 
 
-
+<br/>
 
 ### 2. Algorithm
 
@@ -68,11 +70,13 @@ The reward function is handle by a ***Oracle***. This neural network takes a DNA
 
    8. $$s_t = s_{t+1}$$.
 
-      
+<br/>
 
 ## 3. Function Approximation
 
 In this section we will talk about both **critic** and **actor** networks. 
+
+<br/>
 
 #### Actor
 
@@ -84,21 +88,25 @@ The actor needs to generate a probability distribution over the set of actions $
 
 Indeed, when dealing with multidimensional discrete action space, the number of possible action is exponential with respect to the number of dimension. Let's recall that our action is defined by the 3-tuple $$a_t = (l, i_{opt}, i_{co})$$, let's imagine we are going perform crossover on $$S_{opt}$$ with $$L_{opt}=50$$. Each of $$l, i_{opt}, i_{co}$$ can take a positive discrete value inferior to $$50$$.  Since using all possible combination with order and repetition (and thus $$50^3$$ different actions) would force the neural network to handle a 125000 output layer shape, I'm quite unwilling to go this way. 
 
+<br/>
+
 [Recent work](https://arxiv.org/pdf/1806.00589.pdf) have shown autoregressive model can be used to sample sequentially $$A_i = (a_1, a_2, ..., a_i)$$ from our policy. In that way sampling from model only requires summing over $$O(3*L_{opt})$$ effort whereas the aforementioned model requires $$O((L_{opt})^3)$$. 
+
+<br/>
 
 ![1591061401846]({{ site.baseurl }}/images/1591061401846.png)
 
-
+<br/>
 
 ![1591061487464]({{ site.baseurl }}/images/1591061487464.png)
 
 
 
-
+<br/>
 
 As they are quite easy to implement with nowadays deep learning framework, the goal here would be to test both RNN and MMDP as autoregressive model for the **actor**.
 
-
+<br/>
 
 ###### N independent Actors (Baseline)
 
@@ -108,7 +116,7 @@ Since we want to compare our autoregressive model with a baseline, I choose to i
 
 ![]({{ site.baseurl }}/images/n_independent_actors.png)
 
-
+<br/>
 
 ###### N actions Actor
 
@@ -118,13 +126,13 @@ Another way of predicting multivariate distribution is to use a single neural ne
 
 ![n_actions_actor]({{ site.baseurl }}/images/n_actions_actor.png)
 
-
+<br/>
 
 #### Critic
 
 It is a much more easier network to handle, since it only estimates the value of a particular state $$s_t$$. A simple neural network taking the state $$s_t$$ as input and outputting a scalar will make the job.
 
-
+<br/>
 
 ## 4. Feature engineering
 
@@ -132,11 +140,13 @@ Dealing with large state space can slow learning, and more precisely generalizat
 
 ![1591104437286]({{ site.baseurl }}/images/1591104437286.png)
 
+<br/>
+
 ## 5. Exploration and Entropy
 
 Good exploration method is a important point with large action space, the entropy penalty is quite efficient and easily scalable to our actor network. The entropy is a measure of uncertainty within a certain probabilistic distribution, it is the average “element of surprise” or amount of information when drawing from the probability distribution. When  the agent is learning its policy and an action returns a positive  reward for a state, it might happen that the agent will always use this  action in the future because it knows it produced *some*  positive reward. There could exist another action that yields a much  higher reward, but the agent will never try it because it will just  exploit what it has already learned. This means the agent can get stuck  in a local optimum because of not exploring the behavior of other  actions and never finding the global optimum. This is where entropy comes handy: we can use entropy to encourage exploration and avoid getting stuck in local optima.
 
-
+<br/>
 
 **Entropy**
 
@@ -148,7 +158,7 @@ To abbreviate notations, we write $$p_{\theta}(a)$$ for $$\pi_{\theta}(a\mid s_t
 
 ​	$$H_{\theta_t} =-\sum_{i=1, .., d} \mathbb{E}_{A \sim p_{\theta}} [log\>p_{\theta}(A_i \mid A_{i-1})]$$
 
-
+<br/>
 
 **Crude unbiased estimator**
 
@@ -158,7 +168,7 @@ $$H_{\theta}^{crude}=-log\>p_{\theta}(a)=-\sum_{i=1}^{d}p_{\theta}(a_i\mid a_{i-
 
 This approximation is an unbiased estimate of $$H_{\theta}$$ but its variance is likely to be large. To reduce the variance, we can generate multiple action samples when in $$s_t$$ and average the log action probabilities over the samples. However, generating a large number of samples is costly, especially when each sample is generated from a neural network, since each sample requires one additional forward pass.
 
-
+<br/>
 
 **Smoothed Estimator**
 
@@ -174,13 +184,13 @@ with
 
 which is the entropy of $$\mathcal{A}_i$$ conditioned on $$a_{i−1}$$. This estimate of the entropy bonus is computationally efficient since for each dimension $$i$$, we would need to obtain $$p_θ(·\mid a_{i−1})$$, its log and gradient anyway during training. We refer to this approximation as the smoothed entropy.
 
-
+<br/>
 
 **Gradient Estimator**
 
 To make a lighter document, I will not defined mathematically the gradient of the Entropy. The aforesaid mathematical aspect gives good insights on the entropy choice whereas the gradient formula here is less relevant. You can find the whole definition in [this paper](https://arxiv.org/pdf/1806.00589.pdf).
 
-
+<br/><br/>
 
 ## 6. Differences in each action component dimension
 
@@ -192,7 +202,8 @@ The issue is that, as we are going to use a autoregressive model (*e.g LSTM netw
 
 - Not selectable actions have no effect on the state
 
-  
+
+<br/><br/>
 
 ## 7. Asynchronous
 
@@ -202,7 +213,7 @@ We see that the information flows not only from the agents to the global network
 
 ![image-20200607190705345]({{ site.baseurl }}/images/image-20200607190705345.png)
 
-
+<br/><br/>
 
 *RESSOURCE*
 

@@ -114,23 +114,23 @@ Now we know that our DCGANs flow works we can train it on the whole dataset.
 
 <br />
 
-![dcgan-discri.svg]({{site.baseurl}}/images/gans/dcgan-ex-dloss.png) *Discriminator Loss over updates*
+![dcgan-discri.svg]({{site.baseurl}}/images/gans/dcgan-ex-dloss.png)<br /> *Discriminator Loss over updates*
 
 <br />
 
-![dcgan-gen.svg]({{site.baseurl}}/images/gans/dcgan-ex-gloss.png) *Generator Loss over updates*
+![dcgan-gen.svg]({{site.baseurl}}/images/gans/dcgan-ex-gloss.png)<br /> *Generator Loss over updates*
 
 <br />
 
-![dcgan-ex-facc.png]({{site.baseurl}}/images/gans/dcgan-ex-facc.png)*Discriminator accuracy on fake examples*
+![dcgan-ex-facc.png]({{site.baseurl}}/images/gans/dcgan-ex-facc.png)<br />*Discriminator accuracy on fake examples*
 
 <br />
 
-![dcgan-ex-racc.png]({{site.baseurl}}/images/gans/dcgan-ex-racc.png)*Discriminator accuracy on real examples*
+![dcgan-ex-racc.png]({{site.baseurl}}/images/gans/dcgan-ex-racc.png)<br />*Discriminator accuracy on real examples*
 
 <br />
 
-![dcgan-fid.svg]({{site.baseurl}}/images/gans/dcgan-ex-fid.svg) *Frechet Inception Distance over epochs*
+![dcgan-ex-fid.png]({{site.baseurl}}/images/gans/dcgan-ex-fid.png) <br />*Frechet Inception Distance over epochs*
 
 The Frechet Inception Distance score, or FID for short, is a metric that calculates the distance between feature vectors calculated for real and generated images. It uses the *Inception_v3* deep neural network to extract a latent space of every images.
 
@@ -222,15 +222,15 @@ $$L_G= - E_z[C(G(z))]$$
 
 <br />
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-gloss.png)*Generator Loss over epochs*
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-gloss.png)<br />*Generator Loss over epochs*
 
 <br />
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-closs.png)*Critic Loss over epochs*
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-closs.png)<br />*Critic Loss over epochs*
 
 <br />
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-fid.png)*Frechet Inception distance*
+![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-fid.png)<br />*Frechet Inception distance*
 
 <br />
 
@@ -256,15 +256,15 @@ $$L_G= - E_z[C(G(z))]$$
 
 <br />
 
-![dcgan-discri.svg]({{site.baseurl}}/images/gans/wgan-ex-closs.png) *Discriminator Loss over updates*
+![dcgan-discri.svg]({{site.baseurl}}/images/gans/wgan-ex-closs.png) <br />*Discriminator Loss over updates*
 
 <br />
 
-![dcgan-gen.svg]({{site.baseurl}}/images/gans/wgan-ex-gloss.png) *Generator Loss over updates*
+![dcgan-gen.svg]({{site.baseurl}}/images/gans/wgan-ex-gloss.png) <br />*Generator Loss over updates*
 
 <br />
 
-![dcgan-fid.svg]({{site.baseurl}}/images/gans/wgan-ex-fid.svg) *Frechet Inception Distance over epochs*
+![dcgan-fid.svg]({{site.baseurl}}/images/gans/wgan-ex-fid.svg)<br /> *Frechet Inception Distance over epochs*
 
 <br /><br />
 
@@ -295,7 +295,7 @@ Depending on the GANs architecture you compute the associate loss in which you a
 
 <br />
 
-**Generator**
+#### **Generator**
 
 ![acgan-discri.png]({{site.baseurl}}/images/gans/acgan-discri.png)
 
@@ -311,7 +311,7 @@ Here is an example that shows how the label affects the generation. I use here t
 
 <br />
 
-**Discriminator**
+#### **Discriminator**
 
 ![acgan-discri.png]({{site.baseurl}}/images/gans/acgan-discri.png)
 
@@ -323,9 +323,53 @@ To evaluate the **Discriminator** we calculate its accuracy on both auxiliary an
 
 <br />
 
-**Unit test**
+#### **Unit test**
 
+<br />
 
+In order to test the full flow here (main task + auxiliary task) I need 2 samples, with 2 different labels. We will be working on this dataset:
+
+#### **Real samples**
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-real.png)
+
+<br />
+
+#### **Training**
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-25e.png)*25 epochs*
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-150e.png)*150 epochs*
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-200e.png)*200 epochs*
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-280e.png)*280 epochs*
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-350e.png)*350 epochs*
+
+<br />
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-advacc.png)<br />
+
+*Accuracy on main discriminator task*<br />
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-fauxacc.png)<br />
+
+*Accuracy on auxiliary discriminator task for fake sample*<br />
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-rauxacc.png)<br />
+
+*Accuracy on auxiliary discriminator task for real sample*
+
+the task here is trivial<br />
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-loss.png) <br />*Generator and Discriminator Loss over epochs*
+
+<br />
+
+![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-fid.png)<br />*Frechet Inception distance*
+
+<br />
 
 <br />
 
