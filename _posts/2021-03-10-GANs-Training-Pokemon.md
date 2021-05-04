@@ -14,7 +14,9 @@ GANs are a framework for teaching a DL model to capture the training data’s di
 
 <br />
 
-![gan-schema.svg]({{site.baseurl}}/images/gans/gan-schema.svg)
+| ![gan-schema.svg]({{site.baseurl}}/images/gans/gan-schema.svg) |
+| :----------------------------------------------------------: |
+|                     *GANs global schema*                     |
 
 <br />
 
@@ -34,7 +36,9 @@ We will compare 3 GANs versions:
 
 The Pokemon sprites dataset has advantages, uniform low resolution images with a wide diversity. 
 
-![gan-dataset.png]({{site.baseurl}}/images/gans/gan-dataset.png)
+| ![gan-dataset.png]({{site.baseurl}}/images/gans/gan-dataset.png) |
+| :----------------------------------------------------------: |
+|                       *dataset batch*                        |
 
 The images are 64x64 resolution, with 3 channels. The only preprocessing made is a minmax scale. The goal of this operation is to normalize images between -1 and 1, this can make training faster and reduces the chance of getting stuck in local optima.
 
@@ -54,7 +58,9 @@ $$E_x[log(D(x))] + E_z[log(1 - D(G(z)))]$$
 
 #### **Discriminator:**
 
-![DCGAN discriminator.png]({{site.baseurl}}/images/gans/DCGAN discriminator.png)
+| ![DCGAN discriminator.png]({{site.baseurl}}/images/gans/DCGAN discriminator.png) |
+| :----------------------------------------------------------: |
+|                 *Discriminator architecture*                 |
 
 Each convolutional block consists of a Conv2d/ Batch Normalization/ LeakyReLu sequence. The output of the *Discriminator* is then fed into a sigmoid function. This gives us a score between 0 and 1, that is, the likelihood to be either a real or a fake sample.   <br />
 
@@ -68,7 +74,11 @@ It can be seen as a sum of 2 binary cross entropy loss where labels are ones for
 
 #### **Generator:**
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png)
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png) |
+| :----------------------------------------------------------: |
+|                   *Generator architecture*                   |
+
+
 
 This network has a Batch Normalization, Dropout, LeakyReLu layers at each convolutional block. We'll discuss the different upsample method in another part. Since my real images are normalized between -1 and 1, I use the Tanh function as output activation. The network takes as input a random vector of size $$Z_{dim} = 100$$ sampled from the normal distribution. The generator function maps the latent vector Z to the data space. <br />
 
