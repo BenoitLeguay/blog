@@ -123,29 +123,13 @@ Now we know that our DCGANs flow works we can train it on the whole dataset.
 
 #### Training example
 
-| ![dcgan-10e.png]({{site.baseurl}}/images/gans/dcgan-ex-e10.png) |
-| :----------------------------------------------------------: |
-|                         *10 epochs*                          |
-
-| ![dcgan-50e.png]({{site.baseurl}}/images/gans/dcgan-ex-e50.png) |
-| :----------------------------------------------------------: |
-|                         *50 epochs*                          |
-
-| ![dcgan-100e.png]({{site.baseurl}}/images/gans/dcgan-ex-e100.png) |
-| :----------------------------------------------------------: |
-|                         *100 epochs*                         |
-
-| ![dcgan-250e.png]({{site.baseurl}}/images/gans/dcgan-ex-e250.png) |
-| :----------------------------------------------------------: |
-|                         *250 epochs*                         |
-
-| ![dcgan-400e.png]({{site.baseurl}}/images/gans/dcgan-ex-e400.png) |
-| :----------------------------------------------------------: |
-|                         *400 epochs*                         |
-
-| ![dcgan-800e.png]({{site.baseurl}}/images/gans/dcgan-ex-e800.png) |
-| :----------------------------------------------------------: |
-|                         *800 epochs*                         |
+| ![dcgan-10e.png]({{site.baseurl}}/images/gans/dcgan-ex-e10.png) | ![dcgan-50e.png]({{site.baseurl}}/images/gans/dcgan-ex-e50.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                         *10 epochs*                          |                          50 epochs                           |
+| ![dcgan-100e.png]({{site.baseurl}}/images/gans/dcgan-ex-e100.png) | ![dcgan-250e.png]({{site.baseurl}}/images/gans/dcgan-ex-e250.png) |
+|                          100 epochs                          |                         *250 epochs*                         |
+| ![dcgan-400e.png]({{site.baseurl}}/images/gans/dcgan-ex-e400.png) | ![dcgan-800e.png]({{site.baseurl}}/images/gans/dcgan-ex-e800.png) |
+|                         *400 epochs*                         |                         *800 epochs*                         |
 
 <br />
 
