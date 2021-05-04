@@ -149,29 +149,15 @@ Now we know that our DCGANs flow works we can train it on the whole dataset.
 
 <br />
 
-<br />
-
-| ![dcgan-discri.svg]({{site.baseurl}}/images/gans/dcgan-ex-dloss.png) |
-| :----------------------------------------------------------: |
-|              *Discriminator Loss over updates*               |
+| ![dcgan-discri.svg]({{site.baseurl}}/images/gans/dcgan-ex-dloss.png) | ![dcgan-gen.svg]({{site.baseurl}}/images/gans/dcgan-ex-gloss.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|              *Discriminator Loss over updates*               |                *Generator Loss over updates*                 |
 
 <br />
 
-| ![dcgan-gen.svg]({{site.baseurl}}/images/gans/dcgan-ex-gloss.png) |
-| :----------------------------------------------------------: |
-|                *Generator Loss over updates*                 |
-
-<br />
-
-| ![dcgan-ex-facc.png]({{site.baseurl}}/images/gans/dcgan-ex-facc.png) |
-| :----------------------------------------------------------: |
-|          *Discriminator accuracy on fake examples*           |
-
-<br />
-
-| ![dcgan-ex-racc.png]({{site.baseurl}}/images/gans/dcgan-ex-racc.png) |
-| :----------------------------------------------------------: |
-|          *Discriminator accuracy on real examples*           |
+| ![dcgan-ex-facc.png]({{site.baseurl}}/images/gans/dcgan-ex-facc.png) | ![dcgan-ex-racc.png]({{site.baseurl}}/images/gans/dcgan-ex-racc.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|          *Discriminator accuracy on fake examples*           |          *Discriminator accuracy on real examples*           |
 
 <br />
 
@@ -455,18 +441,20 @@ I experienced more instability on this architecture that I did on every others. 
 | ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-advacc.png) |
 | :----------------------------------------------------------: |
 |            *Accuracy on main discriminator task*             |
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-fauxacc.png) |
-|  *Accuracy on auxiliary discriminator task for fake sample*  |
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-rauxacc.png) |
-|  *Accuracy on auxiliary discriminator task for real sample*  |
+
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-fauxacc.png) | ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-rauxacc.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|  *Accuracy on auxiliary discriminator task for fake sample*  |   Accuracy on auxiliary discriminator task for real sample   |
+
 | ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-loss.png) |
+| :----------------------------------------------------------: |
 |        *Generator and Discriminator Loss over epochs*        |
 | ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-fid.png) |
 |                 *Frechet Inception distance*                 |
 
 <br />
 
-The training is not stable though. The model tends to diverge once it finds an optima. It is clearly noticeable on loss and FID curves around 350 epochs. I'm currently working on it. It 
+The training is not stable though. The model tends to diverge once it finds an optima. It is clearly noticeable on loss and FID curves around 350 epochs. I'm currently working on it. 
 
 <br />
 
@@ -564,15 +552,13 @@ The ColorPicker Generator architecture answers this handicap. Indeed it benefits
 
 
 
-
-
 <br /><br />
 
-| ![gan-meme.png](/images/gans/gan-meme.png) |
-| :----------------------------------------: |
-|                  *Space*                   |
+| ![gan-meme.png]({{site.baseurl}}/images/gans/gan-meme.png) |
+| :--------------------------------------------------------: |
+|                                                            |
 
 
 
-![gan-meme.png]({{site.baseurl}}/images/gans/gan-meme.png)
+
 
