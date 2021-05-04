@@ -4,10 +4,6 @@ title: GANs Training Journey Pokemon
 github: https://github.com/BenoitLeguay/GAN_IconClass
 ---
 
-
-
-| ![results.png]({{site.baseurl}}/images/gans/results.png) |
-
 | ![results.png]({{site.baseurl}}/images/gans/results.png) |
 | :------------------------------------------------------: |
 |                     *Result example*                     |
