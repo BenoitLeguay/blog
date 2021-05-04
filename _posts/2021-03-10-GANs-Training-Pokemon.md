@@ -15,9 +15,7 @@ GANs are a framework for teaching a DL model to capture the training data’s di
 
 <br />
 
-| ![gan-schema.svg]({{site.baseurl}}/images/gans/gan-schema.svg) |
-| :----------------------------------------------------------: |
-|                     *GANs global schema*                     |
+![gan-schema.svg]({{site.baseurl}}/images/gans/gan-schema.svg)
 
 <br />
 
@@ -428,25 +426,29 @@ To evaluate the **Discriminator** we calculate its accuracy on both auxiliary an
 
 In order to test the full flow here (main task + auxiliary task) I need 2 samples, with 2 different labels. We will be working on this dataset:
 
-#### **Real samples**
-
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-real.png)
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-real.png) |
+| :----------------------------------------------------------: |
+|                        *Real dataset*                        |
 
 <br />
 
 I experienced more instability on this architecture that I did on every others. Once the **Generator** starts to really improve, on fake/real and auxiliary tasks, it usually diverges, producing noisy images. Though, many courses claim that ACGANs are more stable than any other Conditional GANs. 
 
+<br />
+
 #### **Training**
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-25e.png)*25 epochs*
-
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-150e.png)*150 epochs*
-
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-200e.png)*200 epochs*
-
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-280e.png)*280 epochs*
-
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-350e.png)*350 epochs*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-25e.png) |
+| :----------------------------------------------------------: |
+|                          25 epochs                           |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-25e.png) |
+|                         *150 epochs*                         |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-200e.png) |
+|                          200 epochs                          |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-280e.png) |
+|                          280 epochs                          |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-350e.png) |
+|                          350 epochs                          |
 
 <br />
 
