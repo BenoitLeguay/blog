@@ -1,4 +1,5 @@
 ---
+
 layout: post
 title: GANs Training Journey Pokemon
 github: https://github.com/BenoitLeguay/GAN_IconClass
@@ -62,6 +63,8 @@ $$E_x[log(D(x))] + E_z[log(1 - D(G(z)))]$$
 | :----------------------------------------------------------: |
 |                 *Discriminator architecture*                 |
 
+<br />
+
 Each convolutional block consists of a Conv2d/ Batch Normalization/ LeakyReLu sequence. The output of the *Discriminator* is then fed into a sigmoid function. This gives us a score between 0 and 1, that is, the likelihood to be either a real or a fake sample.   <br />
 
 $$L_D = E_x[log(D(x))] + E_z[log(1 - D(G(z)))]$$
@@ -78,7 +81,7 @@ It can be seen as a sum of 2 binary cross entropy loss where labels are ones for
 | :----------------------------------------------------------: |
 |                   *Generator architecture*                   |
 
-
+<br />
 
 This network has a Batch Normalization, Dropout, LeakyReLu layers at each convolutional block. We'll discuss the different upsample method in another part. Since my real images are normalized between -1 and 1, I use the Tanh function as output activation. The network takes as input a random vector of size $$Z_{dim} = 100$$ sampled from the normal distribution. The generator function maps the latent vector Z to the data space. <br />
 
@@ -94,17 +97,27 @@ The loss function is different from the minimax one we defined before, but the g
 
 As a unit test, I like to make my GAN to reproduce a single image. This is also a good comparison tool across multiple GANs architectures, when talking about learning pace mostly. <br />
 
-![dcgan-1p-real.png]({{site.baseurl}}/images/gans/dcgan-1p-real.png) <br />
+| ![dcgan-1p-real.png]({{site.baseurl}}/images/gans/dcgan-1p-real.png) |
+| :----------------------------------------------------------: |
+|                        *Real dataset*                        |
+
+ <br />
 
 Our GANs is fed with the same image during the whole training. The dataloader contains 1000 times the same image. <br />
 
-![dcgan-1p-10e.png]({{site.baseurl}}/images/gans/dcgan-1p-10e.png) *10 epochs*
+| ![dcgan-1p-10e.png]({{site.baseurl}}/images/gans/dcgan-1p-10e.png) |
+| :----------------------------------------------------------: |
+|                         *10 epochs*                          |
 
-![dcgan-1p-50e.png]({{site.baseurl}}/images/gans/dcgan-1p-50e.png) *50 epochs*
+| ![dcgan-1p-50e.png]({{site.baseurl}}/images/gans/dcgan-1p-50e.png) |
+| :----------------------------------------------------------: |
+|                         *50 epochs*                          |
 
-![dcgan-1p-150e.png]({{site.baseurl}}/images/gans/dcgan-1p-150e.png) *150 epochs*
+| ![dcgan-1p-150e.png]({{site.baseurl}}/images/gans/dcgan-1p-150e.png) |
+| :----------------------------------------------------------: |
+|                         *150 epochs*                         |
 
-
+<br />
 
 Now we know that our DCGANs flow works we can train it on the whole dataset.
 
@@ -112,41 +125,63 @@ Now we know that our DCGANs flow works we can train it on the whole dataset.
 
 #### Training example
 
-![dcgan-10e.png]({{site.baseurl}}/images/gans/dcgan-ex-e10.png) *10 epochs*
+| ![dcgan-10e.png]({{site.baseurl}}/images/gans/dcgan-ex-e10.png) |
+| :----------------------------------------------------------: |
+|                         *10 epochs*                          |
 
-![dcgan-50e.png]({{site.baseurl}}/images/gans/dcgan-ex-e50.png) *50 epochs*
+| ![dcgan-50e.png]({{site.baseurl}}/images/gans/dcgan-ex-e50.png) |
+| :----------------------------------------------------------: |
+|                         *50 epochs*                          |
 
-![dcgan-100e.png]({{site.baseurl}}/images/gans/dcgan-ex-e100.png) *100 epochs*
+| ![dcgan-100e.png]({{site.baseurl}}/images/gans/dcgan-ex-e100.png) |
+| :----------------------------------------------------------: |
+|                         *100 epochs*                         |
 
-![dcgan-250e.png]({{site.baseurl}}/images/gans/dcgan-ex-e250.png) *250 epochs*
+| ![dcgan-250e.png]({{site.baseurl}}/images/gans/dcgan-ex-e250.png) |
+| :----------------------------------------------------------: |
+|                         *250 epochs*                         |
 
-![dcgan-400e.png]({{site.baseurl}}/images/gans/dcgan-ex-e400.png) *400 epochs*
+| ![dcgan-400e.png]({{site.baseurl}}/images/gans/dcgan-ex-e400.png) |
+| :----------------------------------------------------------: |
+|                         *400 epochs*                         |
 
-![dcgan-800e.png]({{site.baseurl}}/images/gans/dcgan-ex-e800.png) *800 epochs*
-
-
-
-<br />
-
-<br />
-
-![dcgan-discri.svg]({{site.baseurl}}/images/gans/dcgan-ex-dloss.png)<br /> *Discriminator Loss over updates*
-
-<br />
-
-![dcgan-gen.svg]({{site.baseurl}}/images/gans/dcgan-ex-gloss.png)<br /> *Generator Loss over updates*
-
-<br />
-
-![dcgan-ex-facc.png]({{site.baseurl}}/images/gans/dcgan-ex-facc.png)<br />*Discriminator accuracy on fake examples*
+| ![dcgan-800e.png]({{site.baseurl}}/images/gans/dcgan-ex-e800.png) |
+| :----------------------------------------------------------: |
+|                         *800 epochs*                         |
 
 <br />
 
-![dcgan-ex-racc.png]({{site.baseurl}}/images/gans/dcgan-ex-racc.png)<br />*Discriminator accuracy on real examples*
+<br />
+
+| ![dcgan-discri.svg]({{site.baseurl}}/images/gans/dcgan-ex-dloss.png) |
+| :----------------------------------------------------------: |
+|              *Discriminator Loss over updates*               |
 
 <br />
 
-![dcgan-ex-fid.png]({{site.baseurl}}/images/gans/dcgan-ex-fid.png) <br />*Frechet Inception Distance over epochs*
+| ![dcgan-gen.svg]({{site.baseurl}}/images/gans/dcgan-ex-gloss.png) |
+| :----------------------------------------------------------: |
+|                *Generator Loss over updates*                 |
+
+<br />
+
+| ![dcgan-ex-facc.png]({{site.baseurl}}/images/gans/dcgan-ex-facc.png) |
+| :----------------------------------------------------------: |
+|          *Discriminator accuracy on fake examples*           |
+
+<br />
+
+| ![dcgan-ex-racc.png]({{site.baseurl}}/images/gans/dcgan-ex-racc.png) |
+| :----------------------------------------------------------: |
+|          *Discriminator accuracy on real examples*           |
+
+<br />
+
+| ![dcgan-ex-fid.png]({{site.baseurl}}/images/gans/dcgan-ex-fid.png) |
+| :----------------------------------------------------------: |
+|           *Frechet Inception Distance over epochs*           |
+
+ <br />
 
 The Frechet Inception Distance score, or FID for short, is a metric that calculates the distance between feature vectors calculated for real and generated images. It uses the *Inception_v3* deep neural network to extract a latent space of every images.
 
@@ -184,7 +219,9 @@ Another WGAN version tries to guarantee this constraint by clipping the weight u
 
 #### **Critic**
 
-![DCGAN discriminator.png]({{site.baseurl}}/images/gans/DCGAN discriminator.png)
+| ![DCGAN discriminator.png]({{site.baseurl}}/images/gans/DCGAN discriminator.png) |
+| :----------------------------------------------------------: |
+|                    *Critic architecture*                     |
 
 As we have seen above, the architecture of the WGANs' Critic does not differ from the Discriminator, except in the output activation, being the Identity function here. It is important to mention that I remove the **Batch Normalization Layer** because it takes us away from our objective.
 
@@ -206,7 +243,11 @@ with $$\hat{x} = \epsilon x+(1-\epsilon) G(z)$$ and $$\lambda$$ being the gradie
 
 #### **Generator:**
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png)
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png) |
+| :----------------------------------------------------------: |
+|                   *Generator architecture*                   |
+
+<br/>
 
 Not much to say here, it does not differ from the **DCGANs** one.  
 
@@ -222,35 +263,55 @@ $$L_G= - E_z[C(G(z))]$$
 
 **Real samples**
 
-![wgan-ex-1p-real.png]({{site.baseurl}}/images/gans/wgan-ex-1p-real.png)
+| ![wgan-ex-1p-real.png]({{site.baseurl}}/images/gans/wgan-ex-1p-real.png) |
+| :----------------------------------------------------------: |
+|                        *Real dataset*                        |
 
 <br />
 
 **Training**
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-10e.png)*10 epochs*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-10e.png) |
+| :----------------------------------------------------------: |
+|                         *10 epochs*                          |
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-25e.png)*25 epochs*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-25e.png) |
+| :----------------------------------------------------------: |
+|                         *25 epochs*                          |
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-40e.png)*40 epochs*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-40e.png) |
+| :----------------------------------------------------------: |
+|                         *40 epochs*                          |
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-60e.png)*60 epochs*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-60e.png) |
+| :----------------------------------------------------------: |
+|                         *60 epochs*                          |
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-100e.png)*100 epochs*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-100e.png) |
+| :----------------------------------------------------------: |
+|                         *100 epochs*                         |
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-200e.png)*200 epochs*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-200e.png) |
+| :----------------------------------------------------------: |
+|                         *200 epochs*                         |
 
 <br />
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-gloss.png)<br />*Generator Loss over epochs*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-gloss.png) |
+| :----------------------------------------------------------: |
+|                 *Generator Loss over epochs*                 |
 
 <br />
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-closs.png)<br />*Critic Loss over epochs*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-closs.png) |
+| :----------------------------------------------------------: |
+|                  *Critic Loss over epochs*                   |
 
 <br />
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-fid.png)<br />*Frechet Inception distance*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-fid.png) |
+| :----------------------------------------------------------: |
+|                 *Frechet Inception distance*                 |
 
 <br />
 
@@ -258,33 +319,51 @@ $$L_G= - E_z[C(G(z))]$$
 
 ### Training example
 
-![wgan-10e.png]({{site.baseurl}}/images/gans/wgan-ex-e10.png) *10 epochs*
+| ![wgan-10e.png]({{site.baseurl}}/images/gans/wgan-ex-e10.png) |
+| :----------------------------------------------------------: |
+|                         *10 epochs*                          |
 
-![wgan-50e.png]({{site.baseurl}}/images/gans/wgan-ex-e50.png) *50 epochs*
+| ![wgan-50e.png]({{site.baseurl}}/images/gans/wgan-ex-e50.png) |
+| :----------------------------------------------------------: |
+|                         *50 epochs*                          |
 
-![wgan-100e.png]({{site.baseurl}}/images/gans/wgan-ex-e100.png) *100 epochs*
+| ![wgan-100e.png]({{site.baseurl}}/images/gans/wgan-ex-e100.png) |
+| :----------------------------------------------------------: |
+|                         *100 epochs*                         |
 
-![wgan-250e.png]({{site.baseurl}}/images/gans/wgan-ex-e250.png) *250 epochs*
+| ![wgan-250e.png]({{site.baseurl}}/images/gans/wgan-ex-e250.png) |
+| :----------------------------------------------------------: |
+|                         *250 epochs*                         |
 
-![wgan-400e.png]({{site.baseurl}}/images/gans/wgan-ex-e400.png) *400 epochs*
+| ![wgan-400e.png]({{site.baseurl}}/images/gans/wgan-ex-e400.png) |
+| :----------------------------------------------------------: |
+|                         *400 epochs*                         |
 
-![wgan-600e.png]({{site.baseurl}}/images/gans/wgan-ex-e600.png) *600 epochs*
+| ![wgan-600e.png]({{site.baseurl}}/images/gans/wgan-ex-e600.png) |
+| :----------------------------------------------------------: |
+|                         *600 epochs*                         |
 
-![wgan-800e.png]({{site.baseurl}}/images/gans/wgan-ex-e800.png) *800 epochs*
+| ![wgan-800e.png]({{site.baseurl}}/images/gans/wgan-ex-e800.png) |
+| :----------------------------------------------------------: |
+|                         *800 epochs*                         |
 
 <br />
 
-<br />
-
-![dcgan-discri.svg]({{site.baseurl}}/images/gans/wgan-ex-closs.png) <br />*Discriminator Loss over updates*
-
-<br />
-
-![dcgan-gen.svg]({{site.baseurl}}/images/gans/wgan-ex-gloss.png) <br />*Generator Loss over updates*
+| ![dcgan-discri.svg]({{site.baseurl}}/images/gans/wgan-ex-closs.png) |
+| :----------------------------------------------------------: |
+|              *Discriminator Loss over updates*               |
 
 <br />
 
-![dcgan-fid.png]({{site.baseurl}}/images/gans/wgan-ex-fid.png)<br /> *Frechet Inception Distance over epochs*
+| ![dcgan-gen.svg]({{site.baseurl}}/images/gans/wgan-ex-gloss.png) |
+| :----------------------------------------------------------: |
+|                *Generator Loss over updates*                 |
+
+<br />
+
+| ![dcgan-fid.png]({{site.baseurl}}/images/gans/wgan-ex-fid.png) |
+| :----------------------------------------------------------: |
+|           *Frechet Inception Distance over epochs*           |
 
 <br /><br />
 
@@ -301,11 +380,11 @@ All these advantages have a cost since it requires labels. In our case we use 2 
 - Pokemon Type (water, fire, grass, electric etc...). 18 unique types.
 - Pokemon Body Type (quadruped, bipedal, wings, serpentine etc..). 10 unique body types. 
 
+| ![acgan-schema.png]({{site.baseurl}}/images/gans/acgan-schema.png) |
+| :----------------------------------------------------------: |
+|                    *ACGANs global schema*                    |
 
-
-![acgan-schema.png]({{site.baseurl}}/images/gans/acgan-schema.png)
-
-
+<br />
 
 This architecture is compatible with most of GANs' ones, we will describe it on a DCGANs for simplification purpose. 
 
@@ -317,29 +396,29 @@ Depending on the GANs architecture you compute the associate loss in which you a
 
 #### **Generator**
 
-![acgan-discri.png]({{site.baseurl}}/images/gans/acgan-discri.png)
+| ![acgan-discri.png]({{site.baseurl}}/images/gans/acgan-gen.png) |
+| :----------------------------------------------------------: |
+|                  *ACGANs Generator schema*                   |
 
 <br />
 
 Here is an example that shows how the label affects the generation. I use here the same noise vector with different labels (*grass, water, fire*). It has a grasp on the main color associated with the types.
 
-![acgan-type-comparison.png]({{site.baseurl}}/images/gans/acgan-type-comparison.png)
-
-![acgan-type-comparison2.png]({{site.baseurl}}/images/gans/acgan-type-comparison2.png)
-
-
+| ![acgan-type-comparison.png]({{site.baseurl}}/images/gans/acgan-type-comparison.png) | ![acgan-type-comparison2.png]({{site.baseurl}}/images/gans/acgan-type-comparison2.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|              *Conditional generation example 1*              |              *Conditional generation example 2*              |
 
 <br />
 
 #### **Discriminator**
 
-![acgan-discri.png]({{site.baseurl}}/images/gans/acgan-discri.png)
+| ![acgan-discri.png]({{site.baseurl}}/images/gans/acgan-discri.png) |
+| :----------------------------------------------------------: |
+|                *ACGANs Discriminator schema*                 |
 
-To evaluate the **Discriminator** we calculate its accuracy on both auxiliary and adversarial task. Also I add the auxiliary distribution entropy to track failure. Below you have a example for training.
+<br />
 
- ![acgan-discriminator.png]({{site.baseurl}}/images/gans/acgan-discriminator.png)
-
-
+To evaluate the **Discriminator** we calculate its accuracy on both auxiliary and adversarial task. Also I add the auxiliary distribution entropy to track failure. 
 
 <br />
 
