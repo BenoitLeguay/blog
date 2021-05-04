@@ -1,5 +1,4 @@
 ---
-
 layout: post
 title: GANs Training Journey Pokemon
 github: https://github.com/BenoitLeguay/GAN_IconClass
@@ -103,13 +102,9 @@ As a unit test, I like to make my GAN to reproduce a single image. This is also 
 
 Our GANs is fed with the same image during the whole training. The dataloader contains 1000 times the same image. <br />
 
-| ![dcgan-1p-10e.png]({{site.baseurl}}/images/gans/dcgan-1p-10e.png) |
-| :----------------------------------------------------------: |
-|                         *10 epochs*                          |
-
-| ![dcgan-1p-50e.png]({{site.baseurl}}/images/gans/dcgan-1p-50e.png) |
-| :----------------------------------------------------------: |
-|                         *50 epochs*                          |
+| ![dcgan-1p-10e.png]({{site.baseurl}}/images/gans/dcgan-1p-10e.png) | ![dcgan-1p-50e.png]({{site.baseurl}}/images/gans/dcgan-1p-50e.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                         *10 epochs*                          |                         *50 epochs*                          |
 
 | ![dcgan-1p-150e.png]({{site.baseurl}}/images/gans/dcgan-1p-150e.png) |
 | :----------------------------------------------------------: |
@@ -239,41 +234,19 @@ $$L_G= - E_z[C(G(z))]$$
 
 **Training**
 
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-10e.png) |
-| :----------------------------------------------------------: |
-|                         *10 epochs*                          |
-
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-25e.png) |
-| :----------------------------------------------------------: |
-|                         *25 epochs*                          |
-
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-40e.png) |
-| :----------------------------------------------------------: |
-|                         *40 epochs*                          |
-
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-60e.png) |
-| :----------------------------------------------------------: |
-|                         *60 epochs*                          |
-
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-100e.png) |
-| :----------------------------------------------------------: |
-|                         *100 epochs*                         |
-
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-200e.png) |
-| :----------------------------------------------------------: |
-|                         *200 epochs*                         |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-10e.png) | ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-25e.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                         *10 epochs*                          |                         *25 epochs*                          |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-40e.png) | ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-60e.png) |
+|                         *40 epochs*                          |                         *60 epochs*                          |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-100e.png) | ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-200e.png) |
+|                         *100 epochs*                         |                         *200 epochs*                         |
 
 <br />
 
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-gloss.png) |
-| :----------------------------------------------------------: |
-|                 *Generator Loss over epochs*                 |
-
-<br />
-
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-closs.png) |
-| :----------------------------------------------------------: |
-|                  *Critic Loss over epochs*                   |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-gloss.png) | ![DCGAN generator.png]({{site.baseurl}}/images/gans/wgan-ex-1p-closs.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                 *Generator Loss over epochs*                 |                  *Critic Loss over epochs*                   |
 
 <br />
 
@@ -287,29 +260,13 @@ $$L_G= - E_z[C(G(z))]$$
 
 ### Training example
 
-| ![wgan-10e.png]({{site.baseurl}}/images/gans/wgan-ex-e10.png) |
-| :----------------------------------------------------------: |
-|                         *10 epochs*                          |
-
-| ![wgan-50e.png]({{site.baseurl}}/images/gans/wgan-ex-e50.png) |
-| :----------------------------------------------------------: |
-|                         *50 epochs*                          |
-
-| ![wgan-100e.png]({{site.baseurl}}/images/gans/wgan-ex-e100.png) |
-| :----------------------------------------------------------: |
-|                         *100 epochs*                         |
-
-| ![wgan-250e.png]({{site.baseurl}}/images/gans/wgan-ex-e250.png) |
-| :----------------------------------------------------------: |
-|                         *250 epochs*                         |
-
-| ![wgan-400e.png]({{site.baseurl}}/images/gans/wgan-ex-e400.png) |
-| :----------------------------------------------------------: |
-|                         *400 epochs*                         |
-
-| ![wgan-600e.png]({{site.baseurl}}/images/gans/wgan-ex-e600.png) |
-| :----------------------------------------------------------: |
-|                         *600 epochs*                         |
+| ![wgan-10e.png]({{site.baseurl}}/images/gans/wgan-ex-e10.png) | ![wgan-50e.png]({{site.baseurl}}/images/gans/wgan-ex-e50.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                         *10 epochs*                          |                         *50 epochs*                          |
+| ![wgan-100e.png]({{site.baseurl}}/images/gans/wgan-ex-e100.png) | ![wgan-250e.png]({{site.baseurl}}/images/gans/wgan-ex-e250.png) |
+|                         *100 epochs*                         |                         *250 epochs*                         |
+| ![wgan-400e.png]({{site.baseurl}}/images/gans/wgan-ex-e400.png) | ![wgan-600e.png]({{site.baseurl}}/images/gans/wgan-ex-e600.png) |
+|                         *400 epochs*                         |                         *600 epochs*                         |
 
 | ![wgan-800e.png]({{site.baseurl}}/images/gans/wgan-ex-e800.png) |
 | :----------------------------------------------------------: |
@@ -317,17 +274,9 @@ $$L_G= - E_z[C(G(z))]$$
 
 <br />
 
-| ![dcgan-discri.svg]({{site.baseurl}}/images/gans/wgan-ex-closs.png) |
-| :----------------------------------------------------------: |
-|              *Discriminator Loss over updates*               |
-
-<br />
-
-| ![dcgan-gen.svg]({{site.baseurl}}/images/gans/wgan-ex-gloss.png) |
-| :----------------------------------------------------------: |
-|                *Generator Loss over updates*                 |
-
-<br />
+| ![dcgan-discri.svg]({{site.baseurl}}/images/gans/wgan-ex-closs.png) | ![dcgan-gen.svg]({{site.baseurl}}/images/gans/wgan-ex-gloss.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|              *Discriminator Loss over updates*               |                *Generator Loss over updates*                 |
 
 | ![dcgan-fid.png]({{site.baseurl}}/images/gans/wgan-ex-fid.png) |
 | :----------------------------------------------------------: |
@@ -408,16 +357,14 @@ I experienced more instability on this architecture that I did on every others. 
 
 #### **Training**
 
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-25e.png) |
-| :----------------------------------------------------------: |
-|                          25 epochs                           |
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-150e.png) |
-|                         *150 epochs*                         |
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-200e.png) |
-|                          200 epochs                          |
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-280e.png) |
-|                          280 epochs                          |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-25e.png) | ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-150e.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                          25 epochs                           |                         *150 epochs*                         |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-200e.png) | ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-280e.png) |
+|                          200 epochs                          |                         *280 epochs*                         |
+
 | ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-350e.png) |
+| :----------------------------------------------------------: |
 |                          350 epochs                          |
 
 <br />
