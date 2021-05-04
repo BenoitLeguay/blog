@@ -441,7 +441,7 @@ I experienced more instability on this architecture that I did on every others. 
 | ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-25e.png) |
 | :----------------------------------------------------------: |
 |                          25 epochs                           |
-| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-25e.png) |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-150e.png) |
 |                         *150 epochs*                         |
 | ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-200e.png) |
 |                          200 epochs                          |
@@ -452,25 +452,17 @@ I experienced more instability on this architecture that I did on every others. 
 
 <br />
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-advacc.png)<br />
-
-*Accuracy on main discriminator task*<br />
-
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-fauxacc.png)<br />
-
-*Accuracy on auxiliary discriminator task for fake sample*<br />
-
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-rauxacc.png)<br />
-
-*Accuracy on auxiliary discriminator task for real sample*
-
-<br />
-
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-loss.png) <br />*Generator and Discriminator Loss over epochs*
-
-<br />
-
-![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-fid.png)<br />*Frechet Inception distance*
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-advacc.png) |
+| :----------------------------------------------------------: |
+|            *Accuracy on main discriminator task*             |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-fauxacc.png) |
+|  *Accuracy on auxiliary discriminator task for fake sample*  |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-rauxacc.png) |
+|  *Accuracy on auxiliary discriminator task for real sample*  |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-loss.png) |
+|        *Generator and Discriminator Loss over epochs*        |
+| ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-fid.png) |
+|                 *Frechet Inception distance*                 |
 
 <br />
 
@@ -479,8 +471,6 @@ The training is not stable though. The model tends to diverge once it finds an o
 <br />
 
 <br />
-
-
 
 ### Training example
 
