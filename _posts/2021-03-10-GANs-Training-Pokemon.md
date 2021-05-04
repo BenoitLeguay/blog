@@ -6,7 +6,13 @@ github: https://github.com/BenoitLeguay/GAN_IconClass
 
 
 
+![results.png]({{site.baseurl}}/images/gans/results.png)
+
+<br />
+
 GANs are a framework for teaching a DL model to capture the training data’s distribution so we can generate new data from that same distribution. GANs were invented by Ian Goodfellow in 2014 and first described in the paper [Generative Adversarial Nets](https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf). They are made of two distinct models, a *generator* and a *discriminator*. The job of the generator is to spawn ‘fake’ images that look like the training images. The job of the discriminator is to look at an image and output whether or not it is a real training image or a fake image from the generator. During training, the generator is constantly trying to outsmart the discriminator by generating better and better fakes, while the discriminator is working to become a better detective and correctly classify the real and fake images. The equilibrium of this game is when the generator is generating perfect fakes that look as if they came directly from the training data, and the discriminator is left to always guess at 50% confidence that the generator output is real or fake. (@pytorch)
+
+<br />
 
 ![gan-schema.svg]({{site.baseurl}}/images/gans/gan-schema.svg)
 
@@ -152,6 +158,10 @@ It is fair to see the WGAN loss function as an approximation of the Wasserstein 
 
 $$W_{dist}(P_{real}, P_{fake}) = \frac{1}{K}\sup_{\lVert f \rVert_L<1}E_{x \sim P_{real}}[f(x)] - E_{x \sim P_{fake}}[f(x)]$$
 
+In the context of GANs, the above formula can be rewritten by sampling from z-noise distribution and replacing $$f$$ by the Critic function, $$C_w$$:
+
+$$W_{dist}(P_{real}, P_{fake}) = max_{w\in W}[E_{x \sim P_{real}}[C_w(x)] - E_{z \sim \mathcal{N_{\mu, \sigma}}}[C_w(G(z))]]$$
+
 The **Critic** network tries to approximate $$f$$. A good estimation is the key point of this architecture, this is why you often see people updating severals time the Critic for one Generator update. Yet, this formula comes with a constraint. The gradient penalty answers it back. 
 
  <br />
@@ -180,7 +190,7 @@ Specifically, the lower the loss of the **Critic** when evaluating  generated im
 
 $$L_c=E_z[C(G(z))]-E_x[C(x)]+\lambda(\lVert \nabla_{\hat{x}}D(\hat{x}) \rVert_2-1)²$$
 
-with $$\hat{x} = \epsilon x+(1-\epsilon) G(z)$$
+with $$\hat{x} = \epsilon x+(1-\epsilon) G(z)$$ and $$\lambda$$ being the gradient penalty factor
 
 <br /><br />
 
@@ -190,7 +200,7 @@ with $$\hat{x} = \epsilon x+(1-\epsilon) G(z)$$
 
 Not much to say here, it does not differ from the **DCGANs** one.  
 
-Concerning the loss, our generator wants to maximize the critic output, therefore we minimize the negative  average of the critic score among fake samples.
+Concerning the loss, our generator wants to maximize the critic output, therefore we minimize the negative  average of the critic score among fake samples. The $$x$$ associated term disappears since is not directly optimizing with respect to the real data. 
 
 $$L_G= - E_z[C(G(z))]$$
 
@@ -335,6 +345,8 @@ In order to test the full flow here (main task + auxiliary task) I need 2 sample
 
 <br />
 
+I experienced more instability on this architecture that I did on every others. Once the **Generator** starts to really improve, on fake/real and auxiliary tasks, it usually diverges, producing noisy images.
+
 #### **Training**
 
 ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-25e.png)*25 epochs*
@@ -371,11 +383,17 @@ the task here is trivial<br />
 
 <br />
 
+The training is not stable though. The model tends to diverge once it finds an optima. It is clearly noticeable on loss and FID curves around 350 epochs. I'm currently working on it. 
+
 <br />
+
+<br />
+
+
 
 ### Training example
 
-
+I mentioned a certain instability with this architecture
 
 
 
