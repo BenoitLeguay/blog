@@ -6,7 +6,11 @@ github: https://github.com/BenoitLeguay/GAN_IconClass
 
 
 
-![results.png]({{site.baseurl}}/images/gans/results.png)
+| ![results.png]({{site.baseurl}}/images/gans/results.png) |
+
+| ![results.png]({{site.baseurl}}/images/gans/results.png) |
+| :------------------------------------------------------: |
+|                     *Result example*                     |
 
 <br />
 
@@ -212,7 +216,7 @@ $$L_G= - E_z[C(G(z))]$$
 
 **Real samples**
 
-![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png)
+![wgan-ex-1p-real.png]({{site.baseurl}}/images/gans/wgan-ex-1p-real.png)
 
 <br />
 
@@ -274,7 +278,7 @@ $$L_G= - E_z[C(G(z))]$$
 
 <br />
 
-![dcgan-fid.svg]({{site.baseurl}}/images/gans/wgan-ex-fid.svg)<br /> *Frechet Inception Distance over epochs*
+![dcgan-fid.png]({{site.baseurl}}/images/gans/wgan-ex-fid.png)<br /> *Frechet Inception Distance over epochs*
 
 <br /><br />
 
@@ -345,7 +349,7 @@ In order to test the full flow here (main task + auxiliary task) I need 2 sample
 
 <br />
 
-I experienced more instability on this architecture that I did on every others. Once the **Generator** starts to really improve, on fake/real and auxiliary tasks, it usually diverges, producing noisy images.
+I experienced more instability on this architecture that I did on every others. Once the **Generator** starts to really improve, on fake/real and auxiliary tasks, it usually diverges, producing noisy images. Though, many courses claim that ACGANs are more stable than any other Conditional GANs. 
 
 #### **Training**
 
@@ -373,7 +377,7 @@ I experienced more instability on this architecture that I did on every others. 
 
 *Accuracy on auxiliary discriminator task for real sample*
 
-the task here is trivial<br />
+<br />
 
 ![DCGAN generator.png]({{site.baseurl}}/images/gans/acgans-1p-loss.png) <br />*Generator and Discriminator Loss over epochs*
 
@@ -383,7 +387,7 @@ the task here is trivial<br />
 
 <br />
 
-The training is not stable though. The model tends to diverge once it finds an optima. It is clearly noticeable on loss and FID curves around 350 epochs. I'm currently working on it. 
+The training is not stable though. The model tends to diverge once it finds an optima. It is clearly noticeable on loss and FID curves around 350 epochs. I'm currently working on it. It 
 
 <br />
 
@@ -486,6 +490,10 @@ The ColorPicker Generator architecture answers this handicap. Indeed it benefits
 
 
 <br /><br />
+
+| ![gan-meme.png](/images/gans/gan-meme.png) |
+| :----------------------------------------: |
+|                  *Space*                   |
 
 
 
