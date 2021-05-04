@@ -138,8 +138,6 @@ Now we know that our DCGANs flow works we can train it on the whole dataset.
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 |          *Discriminator accuracy on fake examples*           |          *Discriminator accuracy on real examples*           |
 
-<br />
-
 | ![dcgan-ex-fid.png]({{site.baseurl}}/images/gans/dcgan-ex-fid.png) |
 | :----------------------------------------------------------: |
 |           *Frechet Inception Distance over epochs*           |
@@ -411,11 +409,17 @@ Here I talk about the hyper parameters, and regularization techniques I implemen
 
 - Neural network weight initialization
 
+Here we will compare our networks efficiency with different weights initializations. 
+
 
 
 <br />
 
 - Optimizer learning rate
+
+The learning rate is often seen as a major hyper parameters to be tuned, and I cannot disagree on this one. A small modification could heavily affects the learning process, in terms of speed and convergence. 
+
+
 
 
 
@@ -423,11 +427,15 @@ Here I talk about the hyper parameters, and regularization techniques I implemen
 
 - Neural network features
 
+The number of features, (i.e features map) are the number of kernel learned at each convoutional block. The more you put in the network, the more complex structure you can learn, but the more computational power it needs.   
+
 
 
 <br />
 
 - Z space dimension and distribution
+
+The $$Z$$ space is where you sample all the inputs you feed to the *Generator*, it can be significant in the quality of generated images, especially in the diversity aspect. 
 
 
 
@@ -435,11 +443,15 @@ Here I talk about the hyper parameters, and regularization techniques I implemen
 
 - Label smoothing
 
+Label smoothing is regularization techniques that aims at preventing overconfidence from the *Discriminator*. 
+
 
 
 <br />
 
 - Instance noise
+
+
 
 
 
@@ -481,7 +493,11 @@ Here we have fake samples from a WGAN, with both upsample + conv method and conv
 
 The ColorPicker Generator architecture answers this handicap. Indeed it benefits from the complexity given by the upsample method and gets uniform colors with the help of the palette-oriented architecture. 
 
+| ![colorpicker-ex.png]({{site.baseurl}}/images/gans/colorpicker-ex.png) |
+| :----------------------------------------------------------: |
+|             *Color Picker architecture example*              |
 
+colorpicker-ex.png
 
 <br /><br />
 
