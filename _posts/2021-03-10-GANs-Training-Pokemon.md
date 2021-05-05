@@ -391,7 +391,7 @@ The training is not stable though. The model tends to diverge once it finds an o
 
 ### Training example
 
-I mentioned a certain instability with this architecture
+
 
 
 
@@ -407,51 +407,61 @@ Here I talk about the hyper parameters, and regularization techniques I implemen
 
 <br />
 
-- Neural network weight initialization
+- **Neural network weight initialization**
 
-Here we will compare our networks efficiency with different weights initializations. 
-
-
-
-<br />
-
-- Optimizer learning rate
-
-The learning rate is often seen as a major hyper parameters to be tuned, and I cannot disagree on this one. A small modification could heavily affects the learning process, in terms of speed and convergence. 
-
-
+Here we will compare our networks efficiency with different weights initializations. Deep neural nets can easily suffer from vanishing or exploding gradient during training, especially with GANs whose training lacks stability. A good weights initialization can free us from these issues, [this article](https://www.deeplearning.ai/ai-notes/initialization/) shows it nicely. As I am using only `Linear` and `Conv2d` layers from pytorch lib, the default initialization is the He initialization. That is, basically, a continuous uniform distribution between 2 values based on the network size (input features for `Linear` and input channels/ kernel size for `Conv2d`). The original GANs paper recommend to initialize with a Gaussian distribution with a 0.02 standard deviation. 
 
 
 
 <br />
 
-- Neural network features
+- **Optimizer & learning rate**
 
-The number of features, (i.e features map) are the number of kernel learned at each convoutional block. The more you put in the network, the more complex structure you can learn, but the more computational power it needs.   
+The learning rate is often seen as a major hyper parameters to be tuned, and I cannot disagree on this one. A small modification could heavily affects the learning process, in terms of speed and convergence. To obtains decent results I usually had to set it between `1e-3` and `1e-5` . Setting different learning rate for each network (D and G) is totally okay but I did not witness any patterns or rules. Generally, if a network outperform the other you can try to speed up its learning by increasing it, but it can also affect convergence. 
+
+Concerning the optimizer algorithm, I tried all *Stochastic Gradient Descent, RMSProp,* and *Adam*. They all worked at different settings but I experienced more divergence scenario with *SGD* and *RMSProp*. Of course it mainly depends on the task to solve so I cannot really recommend any for a GANs project. In my case I chose *Adam* with a momentum ($$\beta_1$$) set to `0.5`. 
+
+Below I show some intuitive example that shows how the learning rate affects GANs training.
+
+| ![lr-comparison.png]({{site.baseurl}}/images/gans/lr-comparison-auxfacc.png) | ![lr-comparison.png]({{site.baseurl}}/images/gans/lr-comparison-auxracc.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|            *Auxiliary accuracy on fake examples*             |            *Auxiliary accuracy on real examples*             |
+
+| ![lr-comparison.png]({{site.baseurl}}/images/gans/lr-comparison-genloss.png) |
+| :----------------------------------------------------------: |
+|                       *Generator Loss*                       |
+
+The orange one has a Generator learning rate of `1e-2` while the blue one has it set to `5e-4`.  The auxiliary learning for generated images seems to be faster in the first 50 epochs but then rapidly diverges, on the other hand the auxiliary precision on real sample seems to be more stable. The issue comes from the Generator, diverging and producing noisy images. This is easily observable with the generator loss, it has more variance and usually reaches high peaks that last for severals epochs (producing noisy images and having difficulties to recover from it). This *Generator* issues makes the whole learning process instable. 
+
+*<br />*
+
+- **Neural network features**
+
+*The number of features, (i.e features map) are the number of kernel learned at each convolutional block. The more you put in the network, the more complex structure you can learn, but the more computational power it needs.*   
+
+
+
+*<br />*
+
+- **Z space dimension and distribution**
+
+The $$Z$$ space is where you sample all the inputs you feed to the Generator, it can be significant in the quality of generated images, especially in the diversity aspect. 
 
 
 
 <br />
 
-- Z space dimension and distribution
+- **Label smoothing**
 
-The $$Z$$ space is where you sample all the inputs you feed to the *Generator*, it can be significant in the quality of generated images, especially in the diversity aspect. 
-
-
-
-<br />
-
-- Label smoothing
-
-Label smoothing is regularization techniques that aims at preventing overconfidence from the *Discriminator*. 
+Label smoothing is regularization techniques that aims at preventing overconfidence from the Discriminator. 
 
 
 
-<br />
+*<br />*
 
-- Instance noise
+- **Instance noise**
 
-
+Adding noise to input is often what you want to do to make your network more robust. Dropout, Layers Noise 
 
 
 
@@ -459,31 +469,31 @@ Label smoothing is regularization techniques that aims at preventing overconfide
 
 <br />
 
-#### **2) Generator upsampling methods**
+#### 2) Generator upsampling methods
 
 Convolutional neural networks are originally built to take an image as input, in the Generator case we want to do it the other way. To do so, we have several options. We will explore 3 different methods:
 
-- *Transpose Convolution*
+- **Transpose Convolution**
 
 It is the operation inverse to convolution. 
 
 ![convtranspose.gif]({{site.baseurl}}/images/gans/convtranspose.gif)
 
-<br />
+*<br />*
 
-- *Convolution and Upsample (nearest)*
+- **Convolution and Upsample (nearest)**
 
-![upsampling.png]({{site.baseurl}}/images/gans/upsampling.png)
+*![upsampling.png]({{site.baseurl}}/images/gans/upsampling.png)*
 
 
 
-<br />
+*<br />*
 
-- *Color Picker* 
+- **Color Picker** 
 
-Color Picker is a technique I found [here](https://github.com/ConorLazarou/PokeGAN), the idea is to generate separately each *Red Green Blue* channel.  Each is created thanks to 2 components, a color palette and a distribution over this palette, we use the latter to weight the palette and to create a single channel 64x64 matrix. The palette tensor is the same for each channel while the distribution is computed 3 times (*R,G,B*). 
+Color Picker is a technique I found [here](https://github.com/ConorLazarou/PokeGAN), the idea is to generate separately each Red Green Blue channel.  Each is created thanks to 2 components, a color palette and a distribution over this palette, we use the latter to weight the palette and to create a single channel 64x64 matrix. The palette tensor is the same for each channel while the distribution is computed 3 times (R,G,B). 
 
-<br />
+*<br />*
 
 **Comparison**
 
@@ -493,17 +503,15 @@ Here we have fake samples from a WGAN, with both upsample + conv method and conv
 
 The ColorPicker Generator architecture answers this handicap. Indeed it benefits from the complexity given by the upsample method and gets uniform colors with the help of the palette-oriented architecture. 
 
-| ![colorpicker-ex.png]({{site.baseurl}}/images/gans/colorpicker-ex.png) |
+| *![colorpicker-ex.png]({{site.baseurl}}/images/gans/colorpicker-ex.png)* |
 | :----------------------------------------------------------: |
 |             *Color Picker architecture example*              |
 
-colorpicker-ex.png
-
 <br /><br />
 
-| ![gan-meme.png]({{site.baseurl}}/images/gans/gan-meme.png) |
-| :--------------------------------------------------------: |
-|                                                            |
+| *![gan-meme.png]({{site.baseurl}}/images/gans/gan-meme.png)* |
+| :----------------------------------------------------------: |
+|                                                              |
 
 
 
