@@ -54,7 +54,7 @@ $$E_x[log(D(x))] + E_z[log(1 - D(G(z)))]$$
 
 <br />
 
-#### **Discriminator:**
+#### **1) Discriminator:**
 
 | ![DCGAN discriminator.png]({{site.baseurl}}/images/gans/DCGAN discriminator.png) |
 | :----------------------------------------------------------: |
@@ -72,7 +72,7 @@ It can be seen as a sum of 2 binary cross entropy loss where labels are ones for
 
 
 
-#### **Generator:**
+#### **2) Generator:**
 
 | ![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png) |
 | :----------------------------------------------------------: |
@@ -90,7 +90,7 @@ The loss function is different from the minimax one we defined before, but the g
 
 
 
-#### **Unit test**
+#### **3) Unit test**
 
 As a unit test, I like to make my GAN to reproduce a single image. This is also a good comparison tool across multiple GANs architectures, when talking about learning pace mostly. <br />
 
@@ -116,7 +116,7 @@ Now we know that our DCGANs flow works we can train it on the whole dataset.
 
 <br /><br />
 
-#### Training example
+#### 4) Training example
 
 | ![dcgan-10e.png]({{site.baseurl}}/images/gans/dcgan-ex-e10.png) | ![dcgan-50e.png]({{site.baseurl}}/images/gans/dcgan-ex-e50.png) |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
@@ -178,7 +178,7 @@ Another WGAN version tries to guarantee this constraint by clipping the weight u
 
 <br /><br />
 
-#### **Critic**
+#### **1) Critic**
 
 | ![DCGAN discriminator.png]({{site.baseurl}}/images/gans/DCGAN discriminator.png) |
 | :----------------------------------------------------------: |
@@ -194,15 +194,15 @@ Perhaps most importantly, the loss of the **Critic** appears to relate to the qu
 
 Specifically, the lower the loss of the **Critic** when evaluating  generated images, the higher the expected quality of the generated  images. This is important as unlike other GANs that seek stability in terms of finding an equilibrium between two models, the WGANs seeks convergence, lowering generator loss.
 
-
+<br />
 
 $$L_c=E_z[C(G(z))]-E_x[C(x)]+\lambda(\lVert \nabla_{\hat{x}}D(\hat{x}) \rVert_2-1)²$$
 
-with $$\hat{x} = \epsilon x+(1-\epsilon) G(z)$$ and $$\lambda$$ being the gradient penalty factor
+*with $$\hat{x} = \epsilon x+(1-\epsilon) G(z)$$ and $$\lambda$$ being the gradient penalty factor*
 
 <br /><br />
 
-#### **Generator:**
+#### **2) Generator:**
 
 | ![DCGAN generator.png]({{site.baseurl}}/images/gans/DCGAN generator.png) |
 | :----------------------------------------------------------: |
@@ -218,9 +218,7 @@ $$L_G= - E_z[C(G(z))]$$
 
 <br /><br />
 
-#### **Unit test**
-
-<br />
+#### **3) Unit test**
 
 **Real samples**
 
@@ -256,7 +254,7 @@ $$L_G= - E_z[C(G(z))]$$
 
 <br />
 
-### Training example
+#### 4) Training example
 
 | ![wgan-10e.png]({{site.baseurl}}/images/gans/wgan-ex-e10.png) | ![wgan-50e.png]({{site.baseurl}}/images/gans/wgan-ex-e50.png) |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
@@ -309,7 +307,7 @@ Depending on the GANs architecture you compute the associate loss in which you a
 
 <br />
 
-#### **Generator**
+#### **1) Generator**
 
 | ![acgan-discri.png]({{site.baseurl}}/images/gans/acgan-gen.png) |
 | :----------------------------------------------------------: |
@@ -325,7 +323,7 @@ Here is an example that shows how the label affects the generation. I use here t
 
 <br />
 
-#### **Discriminator**
+#### **2) Discriminator**
 
 | ![acgan-discri.png]({{site.baseurl}}/images/gans/acgan-discri.png) |
 | :----------------------------------------------------------: |
@@ -407,19 +405,11 @@ Here I talk about the hyper parameters, and regularization techniques I implemen
 
 <br />
 
-- **Neural network weight initialization**
-
-Here we will compare our networks efficiency with different weights initializations. Deep neural nets can easily suffer from vanishing or exploding gradient during training, especially with GANs whose training lacks stability. A good weights initialization can free us from these issues, [this article](https://www.deeplearning.ai/ai-notes/initialization/) shows it nicely. As I am using only `Linear` and `Conv2d` layers from pytorch lib, the default initialization is the He initialization. That is, basically, a continuous uniform distribution between 2 values based on the network size (input features for `Linear` and input channels/ kernel size for `Conv2d`). The original GANs paper recommend to initialize with a Gaussian distribution with a 0.02 standard deviation. 
-
-
-
-<br />
-
 - **Optimizer & learning rate**
 
 The learning rate is often seen as a major hyper parameters to be tuned, and I cannot disagree on this one. A small modification could heavily affects the learning process, in terms of speed and convergence. To obtains decent results I usually had to set it between `1e-3` and `1e-5` . Setting different learning rate for each network (D and G) is totally okay but I did not witness any patterns or rules. Generally, if a network outperform the other you can try to speed up its learning by increasing it, but it can also affect convergence. 
 
-Concerning the optimizer algorithm, I tried all *Stochastic Gradient Descent, RMSProp,* and *Adam*. They all worked at different settings but I experienced more divergence scenario with *SGD* and *RMSProp*. Of course it mainly depends on the task to solve so I cannot really recommend any for a GANs project. In my case I chose *Adam* with a momentum ($$\beta_1$$) set to `0.5`. 
+Concerning the optimizer algorithm, I tried all *Stochastic Gradient Descent, RMSProp,* and *Adam*. They all worked at different settings but I experienced more divergence scenario with *SGD* and *RMSProp*. Of course it mainly depends on the task to solve so I cannot really recommend any for a GANs project. In my case I chose *Adam* with a momentum ($$\beta_1$$) set to `0.5`.
 
 Below I show some intuitive example that shows how the learning rate affects GANs training.
 
@@ -437,33 +427,41 @@ The orange one has a Generator learning rate of `1e-2` while the blue one has it
 
 - **Neural network features**
 
-*The number of features, (i.e features map) are the number of kernel learned at each convolutional block. The more you put in the network, the more complex structure you can learn, but the more computational power it needs.*   
+The number of features, (i.e features map) are the number of kernel learned at each convolutional block. The more you put in the network, the more complex structure you can learn, but the more computational power it needs. 
 
-
-
-*<br />*
-
-- **Z space dimension and distribution**
-
-The $$Z$$ space is where you sample all the inputs you feed to the Generator, it can be significant in the quality of generated images, especially in the diversity aspect. 
-
-
+(in progress)
 
 <br />
 
 - **Label smoothing**
 
-Label smoothing is regularization techniques that aims at preventing overconfidence from the Discriminator. 
+In classification tasks, label smoothing is regularization techniques that aims at preventing overconfidence and thus helps your model to generalize (being accurate on unseen data). Instead of having `0` and `1` class, we feed our loss function with smoothed labels (`0.9, 0.8` and `0.1, 0.2` etc..). In the context of GANs, we improve our discriminator network ability to generalize with this trick. In [this paper](https://arxiv.org/pdf/1606.03498.pdf), they advise to only smooth the real labels, therefore we only replace the real samples labels with `0.9`. 
 
+<br />
 
+| ![label-smoothing-facc.png]({{site.baseurl}}/images/gans/label-smoothing-facc.png) |
+| :----------------------------------------------------------: |
+|           *Discriminator accuracy on fake example*           |
 
-*<br />*
+The label smoothing techniques allow our discriminator to perform better on fake examples even though the smoothing is only applied on real samples. Generalizing better enables the discriminator to give relevant feedback to the generator network and thus improves the overall model.
+
+<br />
 
 - **Instance noise**
 
-Adding noise to input is often what you want to do to make your network more robust. Dropout, Layers Noise 
+Adding noise to input is often what you want to make your network more robust. Dropout, Layers Noise 
 
+<br />
 
+- **Z space dimension and distribution**
+
+The $$Z$$ space is where you sample all the inputs you feed to the Generator, it can be significant in the quality of generated images, especially in the diversity aspect. 
+
+<br />
+
+- **Neural network weight initialization**
+
+Here we will compare our networks efficiency with different weights initializations. Deep neural nets can easily suffer from vanishing or exploding gradient during training, especially with GANs whose training lacks stability. A good weights initialization can free us from these issues, [this article](https://www.deeplearning.ai/ai-notes/initialization/) shows it nicely. As I am using only `Linear` and `Conv2d` layers from pytorch lib, the default initialization is the He initialization. That is, basically, a continuous uniform distribution between 2 values based on the network size (input features for `Linear` and input channels/ kernel size for `Conv2d`). The original GANs paper recommends to initialize with a Gaussian distribution ($$\mathcal{N_{0, 0.02}}$$). 
 
 <br />
 
