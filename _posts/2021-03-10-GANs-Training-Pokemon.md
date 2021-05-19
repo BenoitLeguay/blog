@@ -423,47 +423,13 @@ Below I show some intuitive example that shows how the learning rate affects GAN
 
 The orange one has a Generator learning rate of `1e-2` while the blue one has it set to `5e-4`.  The auxiliary learning for generated images seems to be faster in the first 50 epochs but then rapidly diverges, on the other hand the auxiliary precision on real sample seems to be more stable. The issue comes from the Generator, diverging and producing noisy images. This is easily observable with the generator loss, it has more variance and usually reaches high peaks that last for severals epochs (producing noisy images and having difficulties to recover from it). This *Generator* issues makes the whole learning process instable. 
 
-<br />
+*<br />*
 
 - **Neural network features**
 
 The number of features, (i.e features map) are the number of kernel learned at each convolutional block. The more you put in the network, the more complex structure you can learn, but the more computational power it needs. 
 
-| ![feature-racc.png]({{site.baseurl}}/images/gans/feature-racc.png) | ![feature-racc.png]({{site.baseurl}}/images/gans/feature-facc.png) |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-|           *Discriminator accuracy on real samples*           |           *Discriminator accuracy on fake samples*           |
-| ![label-smoothing-facc.png]({{site.baseurl}}/images/gans/feature-dloss.png) | ![label-smoothing-facc.png]({{site.baseurl}}/images/gans/feature-gloss.png) |
-|                     *Discriminator loss*                     |                       *Generator loss*                       |
-| ![label-smoothing-facc.png]({{site.baseurl}}/images/gans/feature-fid.png) | ![label-smoothing-facc.png]({{site.baseurl}}/images/gans/feature-legend.png) |
-|                 *Frechet Inception Distance*                 |                           *legend*                           |
-
-It's not clear if there is a certain trend to see on this above curves. This is reassuring though, for this analysis the number of feature is shared across both networks. Then, each is competing with a network as deep as their own and it is complicated to fool the other one. The interesting part to see is the generated images. 
-
-<br />
-
-<br />
-
-| ![label-smoothing-facc.png]({{site.baseurl}}/images/gans/feature-fake-1.png) |
-| :----------------------------------------------------------: |
-| ![label-smoothing-facc.png]({{site.baseurl}}/images/gans/feature-fake-2.png) |
-|               *Fake samples around epoch 100*                |
-
-We can clearly see here the shape and texture comparison. Low feature model tends to produce more trivial shapes and uniform texture, while high number of feature generates more complex structures. 
-
-<br />
-
-<br />
-
-Concerning computational power needed, below you will find a comparison table, in terms of second necessary per epoch.
-
-| Number of features in both network | Time per epoch |
-| :--------------------------------: | :------------: |
-|                 4                  |      3.97      |
-|                 8                  |      4.77      |
-|                 16                 |      4.99      |
-|                 32                 |      5.05      |
-|                 64                 |      7.34      |
-|                128                 |     18.21      |
+(in progress)
 
 <br />
 
@@ -481,13 +447,9 @@ The label smoothing techniques allow our discriminator to perform better on fake
 
 <br />
 
-This method is well fitted for most of GANs architecture but not all of them. It needs to have a classifier in order to smooth labels, WGANs does not use it and thus cannot benefit from label smoothing. This is why I used another regularization technique for the Wasserstein GANs, I described it hereafter.  
-
-<br />
-
 - **Instance noise**
 
-Adding noise to input is often what you want to make your network more robust (*ie Dropout, Layers Noise etc..*). The whole point of this method is to make the discriminator job harder to obtain convergence. I incite you to read [this article](https://www.inference.vc/instance-noise-a-trick-for-stabilising-gan-training/) that explains the whole idea precisely. The technique involves adding Gaussian noise to the discriminator input (*ie fake and real samples*). 
+Adding noise to input is often what you want to make your network more robust. Dropout, Layers Noise 
 
 <br />
 
@@ -495,25 +457,11 @@ Adding noise to input is often what you want to make your network more robust (*
 
 The $$Z$$ space is where you sample all the inputs you feed to the Generator, it can be significant in the quality of generated images, especially in the diversity aspect. 
 
-So I tried to compare two ways of sampling, uniform distribution ($$\mathcal{U}(-1, 1)$$ and Normal distribution. As far as I studied, I did not notice major differences between the 2's. Most of the time, the results were equal or not significantly better.
-
 <br />
-
-| ![label-smoothing-facc.png]({{site.baseurl}}/images/gans/z-fid.png) |
-| :----------------------------------------------------------: |
-|                 *Frechet Inception distance*                 |
-
-Above is the FID for the same network trained with Z samples from 2 different distributions.
-
-<br /><br />
 
 - **Neural network weight initialization**
 
 Here we will compare our networks efficiency with different weights initializations. Deep neural nets can easily suffer from vanishing or exploding gradient during training, especially with GANs whose training lacks stability. A good weights initialization can free us from these issues, [this article](https://www.deeplearning.ai/ai-notes/initialization/) shows it nicely. As I am using only `Linear` and `Conv2d` layers from pytorch lib, the default initialization is the He initialization. That is, basically, a continuous uniform distribution between 2 values based on the network size (input features for `Linear` and input channels/ kernel size for `Conv2d`). The original GANs paper recommends to initialize with a Gaussian distribution ($$\mathcal{N_{0, 0.02}}$$). 
-
-<br />
-
-On this particular task, I tried to observe empirically benefits between the He initialization and the  recommended Gaussian but I did not witness anyone performing better than the other. It must makes differences in the early training for some cases, depending on other parameters. 
 
 <br />
 
@@ -543,7 +491,7 @@ It is the operation inverse to convolution.
 
 Color Picker is a technique I found [here](https://github.com/ConorLazarou/PokeGAN), the idea is to generate separately each Red Green Blue channel.  Each is created thanks to 2 components, a color palette and a distribution over this palette, we use the latter to weight the palette and to create a single channel 64x64 matrix. The palette tensor is the same for each channel while the distribution is computed 3 times (R,G,B). 
 
-<br />
+*<br />*
 
 **Comparison**
 
@@ -561,7 +509,7 @@ The ColorPicker Generator architecture answers this handicap. Indeed it benefits
 
 | *![gan-meme.png]({{site.baseurl}}/images/gans/gan-meme.png)* |
 | :----------------------------------------------------------: |
-|              *Thank for reaching the end of it*              |
+|                                                              |
 
 
 
