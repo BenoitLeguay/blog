@@ -429,7 +429,7 @@ The orange one has a Generator learning rate of `1e-2` while the blue one has it
 
 The number of features, (i.e features map) are the number of kernel learned at each convolutional block. The more you put in the network, the more complex structure you can learn, but the more computational power it needs. 
 
-| ![feature-racc.png]({{site.baseurl}}/images/gans/feature-racc.png) | ![feature-racc.png]({{site.baseurl}}/images/gans/feature-facc.png) |
+| ![feature-racc.png]({{site.baseurl}}/images/gans/feature-racc.png) | ![feature-racc.png]({{site.baseurl}}/images/gans/feature_facc.png) |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 |           *Discriminator accuracy on real samples*           |           *Discriminator accuracy on fake samples*           |
 | ![label-smoothing-facc.png]({{site.baseurl}}/images/gans/feature-dloss.png) | ![label-smoothing-facc.png]({{site.baseurl}}/images/gans/feature-gloss.png) |
