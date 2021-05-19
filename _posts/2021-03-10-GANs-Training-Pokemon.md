@@ -2,7 +2,7 @@
 layout: post
 title: GANs Training Journey Pokemon tmp
 github: https://github.com/BenoitLeguay/GAN_IconClass
-published: false
+hidden: true
 ---
 
 | ![results.png]({{site.baseurl}}/images/gans/results.png) |
