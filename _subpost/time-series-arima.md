@@ -27,7 +27,7 @@ where $$\beta_i$$ is the learned weight associated to the $$Y_{t-i}$$ term, the 
 
 <br/>
 
-To find the order of your AR model, or *p*, you use the *Partial Autocorrelation Function* (PACF). It gives the correlation of a stationary time series with its own lags, having the intermediates dependence removed. Given a time series $$Y_t$$, the partial autocorrelation of lag $$i$$ is the autocorrelation between $$Y_t$$ and $$Y_{t+i}\forall t$$ with the linear dependence of $$Y_t$$ between $$Y_{t+1}$$ and $$Y_{t+i-1}$$ removed. 
+To find the order of your AR model, or *p*, you use the *Partial Autocorrelation Function* (PACF). It gives the correlation of a stationary time series with its own lags, having the intermediates dependence removed. Given a time series $$Y_t$$, the partial autocorrelation of lag $$i$$ is the autocorrelation between $$Y_t$$ and $$Y_{t+i}\forall t$$ with the linear dependence of $$Y_t$$ between $$Y_{t+1}$$ and $$Y_{t+i-1}$$ removed. If the partial autocorrelation function (PACF) of the differenced series displays a sharp cutoff and/or the lag-1 autocorrelation is positive (*i.e. if the series appears slightly "underdifferenced"*) then consider adding one or more AR terms to the model. The lag beyond which the PACF cuts off is the indicated number of AR terms.
 
 ![arima pacf]({{ site.baseurl }}/images/ARIMA/arima-pacf.png)
 
@@ -63,15 +63,20 @@ Mathematically, we define a moving average process as,
 
 $$Y_t=\mu + \epsilon_t + \theta_1\epsilon_{t-1} + \theta_2\epsilon_{t-2} + .. + \theta_q\epsilon_{t-q}$$
 
-where $$\mu$$ is the mean of the series. $$\epsilon_{t-i}$$ is the $$i^{th}$$ residuals term when calculating $$Y_t$$, $$\epsilon_t = Y_t - \hat{Y}_t$$. $$\theta_i$$ is the learned parameter associated to the $$i^{th}$$ residual term. 
+where $$\mu$$ is the mean of the series. $$\epsilon_{t-i}$$ is the $$i^{th}$$ residuals term when calculating $$Y_t$$, $$\epsilon_t = Y_t - \hat{Y}_t$$ we assume that $$\epsilon \sim \mathcal{N(0, 1)}$$. $$\theta_i$$ is the learned parameter associated to the $$i^{th}$$ residual term. 
 
 <br/>
 
-To find *q* we use the Autocorrelation function (ACF). That is the correlation between points separated by *n*. It tells you how correlated points are with each other depending on how many steps you separate them. This function gives strong information on the order of our *Moving Average* model. 
+To find *q* we use the Autocorrelation function (ACF). That is the correlation between points separated by *n*. It tells you how correlated points are with each other depending on how many steps you separate them. This function gives strong information on the order of our *Moving Average* model. If the autocorrelation function (ACF) of the differenced series displays a sharp cutoff and/or the lag-1 autocorrelation is negative (*i.e. if the series appears slightly "overdifferenced"*) then consider adding an MA term to the model. The lag beyond which the ACF cuts off is the indicated number of MA terms.
 
 ![arima acf]({{ site.baseurl }}/images/ARIMA/arima-acf.png)
 
+The MA(2) model trained on our dataset produce the above results. It produces worse results than the AR(2) model. 
+
+![arima ma]({{ site.baseurl }}/images/ARIMA/arima-ma.png)
 
 
-*(in progress)*
 
+#### ARIMA
+
+The ARIMA is the combination of the 3 modules we explained. 
